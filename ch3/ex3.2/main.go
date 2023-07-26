@@ -9,7 +9,7 @@ import (
 )
 
 const (
-    width, height = 600, 400            // canvas size
+    width, height = 720, 480            // canvas size
     cells         = 100                 // number of grid cells
     xyrange       = 30.0                // axis ranges (-xyrange..+xyrange)
     xyscale       = width / 2 / xyrange // pixels per x or y unit
@@ -43,7 +43,7 @@ func main() {
 
 func svg(w io.Writer, f hFct) {
     fmt.Fprintf(w, "<svg xmlns='http://w3.org/2000/svg' "+
-        "style='stroke: grey; fill: white; sroke-width: 0.7' "+
+        "style='stroke: grey; fill: white; stroke-width: 0.7' "+
     "width='%d' heigth='%d'>", width, height)
     for i := 0; i < cells; i++ {
         for j := 0; j < cells; j++ {
@@ -55,6 +55,7 @@ func svg(w io.Writer, f hFct) {
                 ax, ay, bx, by, cx, cy, dx, dy)
         }
     }
+    fmt.Fprintln(w, "</svg>")
 }
 
 func corner(i, j int, f hFct) (float64, float64) {
