@@ -30,33 +30,33 @@ func main() {
 }
 func mandlebrot64(z complex128) color.Color {
     const iterations = 200
-    const constrast = 15
+    const contrast = 15
 
     var v complex64 
     for n := uint8(0); n < iterations; n++ {
         v = v*v + complex64(z)
         if cmplx.Abs(complex128(v)) > 2 {
-            return color.Gray{255 - constrast*n}
+            return color.Gray{255 - contrast*n}
         }
     }
     return color.Black
 }
 func mandlebrot128(z complex128) color.Color {
     const iterations = 200
-    const constrast = 15
+    const contrast = 15
 
     var v complex128
     for n := uint8(0); n < iterations; n++ {
         v = v*v + z
         if cmplx.Abs(v) > 2 {
-            return color.Gray{255 - constrast*n}
+            return color.Gray{255 - contrast*n}
         }
     }
     return color.Black
 }
 func mandlebrotbigF(z complex128) color.Color {
     const iterations = 200
-    const constrast = 15
+    const contrast = 15
     zR := (&big.Float{}).SetFloat64(real(z))
     zI := (&big.Float{}).SetFloat64(imag(z))
     vR, vI := &big.Float{}, &big.Float{}
@@ -69,7 +69,7 @@ func mandlebrotbigF(z complex128) color.Color {
         sqSum := &big.Float{}
         sqSum.Mul(vR, vR).Add(sqSum, (&big.Float{}).Mul(vI, vI))
         if sqSum.Cmp(big.NewFloat(4)) == 1 {
-            return color.Gray{255 - constrast*n}
+            return color.Gray{255 - contrast*n}
         }
     }
     return color.Black
