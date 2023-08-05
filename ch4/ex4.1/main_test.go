@@ -43,7 +43,6 @@ func BenchmarkBitDif1(b *testing.B) {
     }    
 }
 
-
 func BenchmarkBitDif2(b *testing.B) {
     for i := 0; i < nstrs; i++ {
         c1 := sha256.Sum256([]byte(tstr1[i]))
