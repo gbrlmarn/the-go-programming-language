@@ -18,6 +18,7 @@ import (
 const (
     MovieAPI = "https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query="
     PosterAPI = "http://image.tmdb.org/t/p/w500/"
+    usage = `go run main.go <movieTitle>`
 )
 
 type Movies struct {
@@ -30,8 +31,10 @@ type Movie struct {
 }
 
 func main() {
+    if len(os.Args) < 2 {
+        log.Fatal(usage)
+    }
 	movies := getResults(os.Args[1])
-
     if len(movies.Results) > 0 {
         resp, err := http.Get(PosterAPI+movies.Results[0].Poster)
         if err != nil {
