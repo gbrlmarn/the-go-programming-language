@@ -1,0 +1,85 @@
+// Exercise 5.7: Develop startElement and endElement into a general HTML pretty-printer. Print comment nodes, text nodes, and the attributes of each element(<a href='...'>). Use short forms like <img/> instead of <img></img> when an element has no children. Write test to ensure the output can be parsed successfuly.
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"os"
+	"strings"
+
+	"golang.org/x/net/html"
+)
+
+func main() {
+	for _, url := range os.Args[1:] {
+		outline(url)
+	}
+}
+
+func outline(url string) error {
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	doc, err := html.Parse(resp.Body)
+	if err != nil {
+		return err
+	}
+	forEachNode(doc, startElement, endElement)
+
+	return nil
+}
+
+func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
+	if pre != nil {
+		pre(n)
+	}
+
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		forEachNode(c, pre, post)
+	}
+
+	if post != nil {
+		post(n)
+	}
+}
+
+var depth int
+func startElement(n *html.Node) {
+	attrs := getAttrs(n)
+	if n.Type == html.ElementNode {
+		if n.NextSibling != nil {
+			fmt.Printf("%*s<%s%s>\n", depth*2, "", n.Data, attrs)
+		} else {
+			fmt.Printf("%*s<%s%s/>\n", depth*2, "", n.Data, attrs)
+		}
+		depth++
+	} else if n.Type == html.TextNode || n.Type == html.CommentNode {
+		for _, line := range strings.Split(n.Data, "\n") {
+			line = strings.TrimSpace(line)
+			if line != "" && line != "\n" {
+				fmt.Printf("%*s%s\n", depth*2, "", line)
+			}
+		}
+		
+	}
+}
+
+func getAttrs(n *html.Node) string {
+	var attrs string
+	for _, v := range n.Attr {
+		attrs += fmt.Sprintf(" %s='%s'", v.Key, v.Val)
+	}
+	return attrs
+}
+
+func endElement(n *html.Node) {
+	if n.Type == html.ElementNode {
+		depth--
+		if n.NextSibling != nil {
+			fmt.Printf("%*s</%s>\n", depth*2, "", n.Data)
+		}
+	}
+}
