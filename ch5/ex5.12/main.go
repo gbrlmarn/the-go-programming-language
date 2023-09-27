@@ -1,7 +1,4 @@
-// forEachNode calls the functions pre(x) and post(x) for each node
-// x in the tree rooted at n. Both functions are optional.
-// pre is called before the children are visited (preorder) and
-// post is called after (postorder).
+// Exercise 5.12: The startElement and endElement functions in gopl.io/ch5/outline2 share a global variable, depth. Turn them into anonymous functions that share a variable local to the outline function.
 package main
 
 import (
@@ -29,6 +26,20 @@ func outline(url string) error {
 	if err != nil {
 		return err
 	}
+	
+	var depth int
+	var startElement = func(n *html.Node) {
+	 	if n.Type == html.ElementNode {
+			fmt.Printf("%*s<%s>\n", depth*2, "", n.Data)
+			depth++
+		}
+	}
+	var endElement = func(n *html.Node) {
+		if n.Type == html.ElementNode {
+			depth--
+			fmt.Printf("%*s</%s>\n", depth*2, "", n.Data)
+		}
+	}
 	forEachNode(doc, startElement, endElement)
 
 	return nil
@@ -47,19 +58,3 @@ func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
 		post(n)
 	}
 }
-
-var depth int
-func startElement(n *html.Node) {
-	if n.Type == html.ElementNode {
-		fmt.Printf("%*s<%s>\n", depth*2, "", n.Data)
-		depth++
-	}
-}
-
-func endElement(n *html.Node) {
-	if n.Type == html.ElementNode {
-		depth--
-		fmt.Printf("%*s</%s>\n", depth*2, "", n.Data)
-	}
-}
-
