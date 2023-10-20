@@ -1,26 +1,29 @@
-// Exercise 6.4: Add a method Elems that returns a slice containing the elemnts of the set, suitable for iterating over with a range loop.
+// Exercise 6.5: The type of each word used by IntSet is uint64, but 64-bit arithmetic may be inefficient on a 32-bit platform. Modify the program to use the uint type, which is the most efficient unsigned integer type for the platform. Instead of dividing by 64, define a constant holding the effective size of uint in bits, 32 or 64. You can use the perhaps too-clever expression 32 << (^uint(0) >> 63) for this purpose.
 package main
-
 import (
 	"bytes"
 	"fmt"
 )
 
+// UINT size.
+// Depends on architecture 32 or 64 bits.
+const UINT = 32 <<(^uint(0) >> 63)
+
 // An IntSet is a set of small non-negative integers.
 // Its zero value represents the empty set.
 type IntSet struct {
-	words []uint64
+	words []uint
 }
 
 // Has reports whether the set contains the non-negative value x.
 func (s *IntSet) Has(x int) bool {
-	word, bit := x/64, uint(x%64)
+	word, bit := x/UINT, uint(x%UINT)
 	return word < len(s.words) && s.words[word]&(1<<bit) != 0
 }
 
 // Add adds the non-negative value x to the set.
 func (s *IntSet) Add(x int) {
-	word, bit := x/64, uint(x%64)
+	word, bit := x/UINT, uint(x%UINT)
 	for word >= len(s.words) {
 		s.words = append(s.words, 0)
 	}
@@ -46,29 +49,16 @@ func (s *IntSet) String() string {
 		if word == 0 {
 			continue
 		}
-		for j := 0; j < 64; j++ {
+		for j := 0; j < UINT; j++ {
 			if word&(1<<uint(j)) != 0 {
-				buf.WriteByte(' ')
+				if buf.Len() > len("{") {
+					buf.WriteByte(' ')
+				}
+				fmt.Fprintf(&buf, "%d", UINT*i+j)
 			}
-			fmt.Fprintf(&buf, "%d", 64*i+j)
 		}
 	}
 	buf.WriteByte('}')
 	return buf.String()
 }
 
-// Elems returns the set as a slice of the form {1, 2, 3}.
-func (s *IntSet) Elems() []int {
-	res := make([]int, 0)
-	for i, word := range s.words {
-		if word == 0 {
-			continue
-		}
-		for j := 0; j < 64; j++ {
-			if word&(1<<uint(j)) != 0 {
-				res = append(res, 64*i+j)
-			}
-		}
-	}
-	return res
-}
