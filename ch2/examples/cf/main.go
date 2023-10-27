@@ -1,4 +1,4 @@
-// Cf converts its numeric argument to Celisius and Fahrenheit
+// Cf converts its numeric argument to Celsius and Fahrenheit
 package main
 
 import (
@@ -16,7 +16,7 @@ func main() {
             os.Exit(1)
         }
         f := tempconv.Fahrenheit(t)
-        c := tempconv.Celisius(t)
+        c := tempconv.Celsius(t)
         fmt.Printf("%s = %s, %s = %s\n",
             f, tempconv.FToC(f), c, tempconv.CToF(c))
     }

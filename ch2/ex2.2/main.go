@@ -33,7 +33,7 @@ func main() {
 }
 
 func printTemp(v float64) {
-    c := tempconv.Celisius(v)
+    c := tempconv.Celsius(v)
     f := tempconv.Fahrenheit(v)
     fmt.Printf("%s = %s, %s = %s\n",
         c, tempconv.CToF(c), f, tempconv.FToC(f))
