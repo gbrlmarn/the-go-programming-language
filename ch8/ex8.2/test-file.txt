@@ -1,0 +1,6 @@
+This is a test file.
+The content should be displayed,
+with the use of the commands:
+
+$ nc localhost 8000
+$ get ./test-file.txt
