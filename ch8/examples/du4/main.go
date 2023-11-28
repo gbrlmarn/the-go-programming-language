@@ -1,4 +1,4 @@
-// The du3 command computes the disk usage of the files in a directory.
+// The du4 command computes the disk usage of the files in a directory.
 // NOTE: slightly modified to replace 'ioutil' which is deprecated
 package main
 
@@ -17,6 +17,15 @@ var verbose = flag.Bool("v", false, "show verbose progress messages")
 
 var done = make(chan struct{})
 
+func cancelled() bool {
+	select {
+	case <-done:
+		return true
+	default:
+		return false
+	}
+}
+
 func main() {
 	// Determine the initial directories.
 	flag.Parse()
@@ -24,6 +33,12 @@ func main() {
 	if len(roots) == 0 {
 		roots = []string{"."}
 	}
+
+	// Cancel traversal when input is detected.
+	go func() {
+		os.Stdin.Read(make([]byte, 1)) // read a single byte
+		close(done)
+	}()
 
 	// Traverse each root of the file tree in parallel.
 	fileSizes := make(chan int64)
@@ -67,6 +82,9 @@ func printDiskUsage(nfiles, nbytes int64) {
 // and sends the size of each found file on filesSizes.
 func walkDir(dir string, n *sync.WaitGroup, fileSizes chan<- int64) {
 	defer n.Done()
+	if cancelled() {
+		return
+	}
 	for _, entry := range dirents(dir) {
 		if entry.IsDir() {
 			n.Add(1)
