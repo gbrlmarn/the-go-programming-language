@@ -5,10 +5,10 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"os"
-	"net/http"
 	"golang.org/x/net/html"
+	"log"
+	"net/http"
+	"os"
 )
 
 var done = make(chan struct{})
@@ -32,48 +32,41 @@ func crawl(url string) []string {
 // Extract makes an HTTP GET request to the specified URL, parses
 // the response as HTML, and returns the links in the HTML document.
 func Extract(url string) ([]string, error) {
-
-    	req, err := http.NewRequest("GET", url, nil)
+	req, err := http.NewRequest("GET", url, nil)
 	req.Cancel = done
-    	resp, err := http.DefaultClient.Do(req)
+	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return nil, err
 	}
 
-/*
-    resp, err := http.Get(url)
-    if err != nil {
-        return nil, err
-    }
-*/
-    if resp.StatusCode != http.StatusOK {
-        resp.Body.Close()
-        return nil, fmt.Errorf("getting %s: %s", url, resp.Status)
-    }
+	if resp.StatusCode != http.StatusOK {
+		resp.Body.Close()
+		return nil, fmt.Errorf("getting %s: %s", url, resp.Status)
+	}
 
-    doc, err := html.Parse(resp.Body)
-    resp.Body.Close()
-    if err != nil {
-        return nil, fmt.Errorf("parsing %s as HTML: %v", url, err)
-    }
+	doc, err := html.Parse(resp.Body)
+	resp.Body.Close()
+	if err != nil {
+		return nil, fmt.Errorf("parsing %s as HTML: %v", url, err)
+	}
 
-    var links []string
-    visitNode := func(n *html.Node) {
-        if n.Type == html.ElementNode && n.Data == "a" {
-            for _, a := range n.Attr {
-                if a.Key != "href" {
-                    continue
-                }
-                link, err := resp.Request.URL.Parse(a.Val)
-                if err != nil {
-                    continue // ignore bad URLs 
-                }
-                links = append(links, link.String())
-            }
-        }
-    }
-    forEachNode(doc, visitNode, nil)
-    return links, nil
+	var links []string
+	visitNode := func(n *html.Node) {
+		if n.Type == html.ElementNode && n.Data == "a" {
+			for _, a := range n.Attr {
+				if a.Key != "href" {
+					continue
+				}
+				link, err := resp.Request.URL.Parse(a.Val)
+				if err != nil {
+					continue // ignore bad URLs
+				}
+				links = append(links, link.String())
+			}
+		}
+	}
+	forEachNode(doc, visitNode, nil)
+	return links, nil
 }
 
 // copied from outline2
@@ -91,9 +84,8 @@ func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
 	}
 }
 
-
 func main() {
-	worklist := make(chan []string) // list of URLs, may have duplicates
+	worklist := make(chan []string)  // list of URLs, may have duplicates
 	unseenLinks := make(chan string) // de-duplicated URLs
 
 	// Add command-line arguments to worklist
