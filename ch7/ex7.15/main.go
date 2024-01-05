@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"the-go-programming-language/ch7/examples/eval"
+	"gopl/ch7/examples/eval"
 )
 
 func main() {

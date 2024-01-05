@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"strings"
 
-	"the-go-programming-language/ch2/ex2.1"
-    "the-go-programming-language/ch2/ex2.2/wconv"
-    "the-go-programming-language/ch2/ex2.2/lenconv"
+	"gopl/ch2/ex2.1"
+    "gopl/ch2/ex2.2/wconv"
+    "gopl/ch2/ex2.2/lenconv"
 )
 
 func main() {

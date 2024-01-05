@@ -3,7 +3,7 @@ package popcount_test
 import (
     "testing"
 
-    "the-go-programming-language/ch2/examples/popcount"
+    "gopl/ch2/examples/popcount"
 )
 
 func BenchmarkPopCount(b *testing.B) {
@@ -14,7 +14,7 @@ func BenchmarkPopCount(b *testing.B) {
 
 // goos: darwin
 // goarch: arm64
-// pkg: the-go-programming-language/ch9/ex9.2
+// pkg: gopl/ch9/ex9.2
 // BenchmarkPopCount-8   	1000000000	         0.3181 ns/op
 // PASS
-// ok  	the-go-programming-language/ch9/ex9.2	0.729s
+// ok  	gopl/ch9/ex9.2	0.729s

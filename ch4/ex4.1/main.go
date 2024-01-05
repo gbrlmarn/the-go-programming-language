@@ -48,9 +48,9 @@ func bitDiff2(c1, c2 [sha256.Size]byte) int {
 }
 // goos: darwin
 // goarch: arm64
-// pkg: the-go-programming-language/ch4/ex4.1
+// pkg: gopl/ch4/ex4.1
 // BenchmarkBitDif1-8   	1000000000	         0.2140 ns/op
 // BenchmarkBitDif2-8   	1000000000	         0.1061 ns/op
 // PASS
-// ok  	the-go-programming-language/ch4/ex4.1	4.669s
+// ok  	gopl/ch4/ex4.1	4.669s
 // The second one is better :D

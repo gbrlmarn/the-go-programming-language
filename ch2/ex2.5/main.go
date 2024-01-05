@@ -20,8 +20,8 @@ func PopCount(x uint64) int {
 
 // goos: linux
 // goarch: amd64
-// pkg: the-go-programming-language/ch2/ex2.5
+// pkg: gopl/ch2/ex2.5
 // cpu: Intel(R) Core(TM) i5-7300U CPU @ 2.60GHz
 // BenchmarkPopCount-4   	60004566	        20.07 ns/op
 // PASS
-// ok  	the-go-programming-language/ch2/ex2.5	1.228s
+// ok  	gopl/ch2/ex2.5	1.228s

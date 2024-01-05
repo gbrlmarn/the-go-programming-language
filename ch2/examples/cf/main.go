@@ -6,7 +6,7 @@ import (
     "os"
     "strconv"
 
-    "the-go-programming-language/ch2/examples/tempconv"
+    "gopl/ch2/examples/tempconv"
 )
 func main() {
     for _, arg := range os.Args[1:] {

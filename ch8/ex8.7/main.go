@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"the-go-programming-language/ch5/examples/links"
+	"gopl/ch5/examples/links"
 )
 
 var depth = flag.Int("depth", 1, "URLs crawl depth")

@@ -14,8 +14,8 @@ func BenchmarkPipe(b *testing.B) {
 // go test -bench=.
 // goos: linux
 // goarch: amd64
-// pkg: the-go-programming-language/ch9/ex9.4
+// pkg: gopl/ch9/ex9.4
 // cpu: Intel(R) Core(TM) i5-7300U CPU @ 2.60GHz
 // BenchmarkPipe-4   	      32	  34631122 ns/op
 // PASS
-// ok  	the-go-programming-language/ch9/ex9.4	2.710s
+// ok  	gopl/ch9/ex9.4	2.710s

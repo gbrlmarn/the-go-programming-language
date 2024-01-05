@@ -96,11 +96,11 @@ func mandelbrotbigR(z complex128) color.Color {
 }
 // goos: linux
 // goarch: amd64
-// pkg: the-go-programming-language/ch3/ex3.8
+// pkg: gopl/ch3/ex3.8
 // cpu: Intel(R) Core(TM) i5-7300U CPU @ 2.60GHz
 // BenchmarkMandelbrot64-4     	86675203	        12.05 ns/op
 // BenchmarkMandelbrot128-4    	136737777	         9.005 ns/op
 // BenchmarkMandelbrotbigF-4   	 2609875	       443.1 ns/op
 // BenchmarkMandelbrotR-4      	  665094	      1698 ns/op
 // PASS
-// ok  	the-go-programming-language/ch3/ex3.8	5.955s
+// ok  	gopl/ch3/ex3.8	5.955s

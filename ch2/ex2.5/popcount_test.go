@@ -3,7 +3,7 @@ package popcount_test
 import (
     "testing"
 
-    "the-go-programming-language/ch2/ex2.5"
+    "gopl/ch2/ex2.5"
 )
 
 func BenchmarkPopCount(b *testing.B) {

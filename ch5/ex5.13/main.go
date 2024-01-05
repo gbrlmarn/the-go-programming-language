@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"os"
 
-	"the-go-programming-language/ch5/examples/links"
+	"gopl/ch5/examples/links"
 )
 
 const (

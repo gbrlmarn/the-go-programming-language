@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"the-go-programming-language/ch5/examples/links"
+	"gopl/ch5/examples/links"
 )
 
 // tokens is a counting semaphore used to

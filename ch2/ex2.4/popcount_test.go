@@ -3,7 +3,7 @@ package popcount_test
 import (
 	"testing"
 
-	"the-go-programming-language/ch2/ex2.4"
+	"gopl/ch2/ex2.4"
 )
 
 func BenchmarkPopCount(b *testing.B) {
@@ -12,6 +12,6 @@ func BenchmarkPopCount(b *testing.B) {
     }
 }
 
-// pkg: the-go-programming-language/ch2/ex2.4
+// pkg: gopl/ch2/ex2.4
 // cpu: Intel(R) Core(TM) i5-7300U CPU @ 2.60GHz
 // BenchmarkPopCount-4   	57588987	        20.48 ns/op

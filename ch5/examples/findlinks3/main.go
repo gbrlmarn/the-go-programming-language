@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"the-go-programming-language/ch5/examples/links"
+	"gopl/ch5/examples/links"
 )
 
 func breadthFirst(f func(item string) []string, worklist []string) {

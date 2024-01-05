@@ -4,7 +4,7 @@ import (
 	"html/template"
 	"log"
 	"os"
-	"the-go-programming-language/ch4/examples/github"
+	"gopl/ch4/examples/github"
 	"time"
 )
 

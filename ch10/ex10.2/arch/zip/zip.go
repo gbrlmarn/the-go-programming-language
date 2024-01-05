@@ -3,7 +3,7 @@ package zip
 import (
 	"archive/zip"
 	"fmt"
-	"the-go-programming-language/ch10/ex10.2/arch"
+	"gopl/ch10/ex10.2/arch"
 )
 
 func Open(fileName string) error {

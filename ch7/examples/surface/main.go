@@ -6,7 +6,7 @@ import (
 	"log"
 	"math"
 	"net/http"
-	"the-go-programming-language/ch7/examples/eval"
+	"gopl/ch7/examples/eval"
 )
 
 const (

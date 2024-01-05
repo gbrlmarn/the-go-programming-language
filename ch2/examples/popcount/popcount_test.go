@@ -3,7 +3,7 @@ package popcount_test
 import (
     "testing"
 
-    "the-go-programming-language/ch2/examples/popcount"
+    "gopl/ch2/examples/popcount"
 )
 
 func BenchmarkPopCount(b *testing.B) {
@@ -12,13 +12,13 @@ func BenchmarkPopCount(b *testing.B) {
     }
 }
 
-// go test -bench=. the-go-programming-language/ch2/examples/popcount
+// go test -bench=. gopl/ch2/examples/popcount
 // cpu: Intel(R) Core(TM) i5-7300U CPU @ 2.60GHz
 // BenchmarkPopCount-4   	1000000000	         0.2878 ns/op
 
 // goos: darwin
 // goarch: arm64
-// pkg: the-go-programming-language/ch2/examples/popcount
+// pkg: gopl/ch2/examples/popcount
 // BenchmarkPopCount-8   	1000000000	         0.3178 ns/op
 // PASS
-// ok  	the-go-programming-language/ch2/examples/popcount	0.645s
+// ok  	gopl/ch2/examples/popcount	0.645s

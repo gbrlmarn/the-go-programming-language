@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"the-go-programming-language/ch4/examples/github"
+	"gopl/ch4/examples/github"
 )
 
 const templ = `

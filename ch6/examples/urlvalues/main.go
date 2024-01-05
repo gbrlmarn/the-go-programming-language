@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"the-go-programming-language/ch6/examples/url"
+	"gopl/ch6/examples/url"
 )
 
 func main() {

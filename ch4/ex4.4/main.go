@@ -33,9 +33,9 @@ func rotate2(s []int, p int) {
 
 // goos: linux
 // goarch: amd64
-// pkg: the-go-programming-language/ch4/ex4.4
+// pkg: gopl/ch4/ex4.4
 // cpu: Intel(R) Core(TM) i5-7300U CPU @ 2.60GHz
 // BenchmarkRotate-4    	93279985	        11.50 ns/op
 // BenchmarkRotate2-4   	26106001	        42.14 ns/op
 // PASS
-// ok  	the-go-programming-language/ch4/ex4.4	2.237s
+// ok  	gopl/ch4/ex4.4	2.237s

@@ -46,8 +46,8 @@ func reverse2(sb []byte) {
 }
 // goos: darwin
 // goarch: arm64
-// pkg: the-go-programming-language/ch4/ex4.7
+// pkg: gopl/ch4/ex4.7
 // BenchmarkReverse-8    	18488534	        64.89 ns/op
 // BenchmarkReverse2-8   	47368342	        25.37 ns/op
 // PASS
-// ok  	the-go-programming-language/ch4/ex4.7	3.566s
+// ok  	gopl/ch4/ex4.7	3.566s

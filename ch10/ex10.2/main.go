@@ -5,9 +5,9 @@ import (
 	"log"
 	"os"
 
-	"the-go-programming-language/ch10/ex10.2/arch"
-    _ "the-go-programming-language/ch10/ex10.2/arch/tar"
-    _ "the-go-programming-language/ch10/ex10.2/arch/zip"
+	"gopl/ch10/ex10.2/arch"
+    _ "gopl/ch10/ex10.2/arch/tar"
+    _ "gopl/ch10/ex10.2/arch/zip"
 )
 
 func main() {
