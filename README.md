@@ -1,4 +1,4 @@
 # The Go Programming Language
-Solutions to exercises that can be found in the book from above.  
+Solutions for the follwing [book](https://www.gopl.io/).  
 
 ![](./chr1/ex1.6/green.gif)
