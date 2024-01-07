@@ -1,4 +1,4 @@
 # The Go Programming Language
-Solutions for the follwing [book](https://www.gopl.io/).  
+Solutions for the following [book](https://www.gopl.io/).
 
-![](./chr1/ex1.6/green.gif)
+![](./ch1/ex1.6/green.gif)
