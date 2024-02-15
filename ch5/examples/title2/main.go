@@ -41,7 +41,6 @@ func title(url string) error {
 	return nil
 }
 
-
 func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
 	if pre != nil {
 		pre(n)
@@ -55,4 +54,3 @@ func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
 		post(n)
 	}
 }
-

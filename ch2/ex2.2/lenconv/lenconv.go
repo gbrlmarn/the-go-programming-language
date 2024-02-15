@@ -7,4 +7,4 @@ type Meter float64
 type Foot float64
 
 func (m Meter) String() string { return fmt.Sprintf("%gm", m) }
-func (f Foot) String() string { return fmt.Sprintf("%g🦶", f) }  
+func (f Foot) String() string  { return fmt.Sprintf("%g🦶", f) }

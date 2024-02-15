@@ -25,4 +25,3 @@ func TestLineCounter(t *testing.T) {
 		t.Fatal(c)
 	}
 }
-

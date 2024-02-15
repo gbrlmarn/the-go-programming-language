@@ -5,7 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	
+
 	"gopl/ch5/examples/links"
 )
 
@@ -13,7 +13,7 @@ var depth = flag.Int("depth", 1, "URLs crawl depth")
 
 // url with depth counter
 type curl struct {
-	c int
+	c   int
 	url string
 }
 
@@ -37,7 +37,7 @@ func crawl(curl curl) []string {
 
 func main() {
 	flag.Parse()
-	worklist := make(chan []curl) // list of URLs, may have duplicates
+	worklist := make(chan []curl)  // list of URLs, may have duplicates
 	unseenLinks := make(chan curl) // de-duplicated URLs
 
 	// Add command-line arguments to worklist
@@ -56,7 +56,7 @@ func main() {
 				foundLinks := crawl(link)
 				var foundCurls []curl
 				for _, url := range foundLinks {
-					foundCurls = append(foundCurls, curl{link.c+1, url})
+					foundCurls = append(foundCurls, curl{link.c + 1, url})
 				}
 				go func() {
 					worklist <- foundCurls

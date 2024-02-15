@@ -4,7 +4,7 @@ package memo
 
 // A memo caches the results of calling a Func.
 type Memo struct {
-	f Func
+	f     Func
 	cache map[string]result
 }
 
@@ -13,7 +13,7 @@ type Func func(key string) (interface{}, error)
 
 type result struct {
 	value interface{}
-	err error
+	err   error
 }
 
 func New(f Func) *Memo {

@@ -29,15 +29,14 @@ const templ = `
 `
 
 var report = template.Must(template.New("issuelist").
-    Parse(templ))
+	Parse(templ))
 
 func main() {
-    result, err := github.SearchIssues(os.Args[1:])
-    if err != nil {
-        log.Fatal(err)
-    }
-    if err := report.Execute(os.Stdout, result); err != nil {
-        log.Fatal(err)
-    }
+	result, err := github.SearchIssues(os.Args[1:])
+	if err != nil {
+		log.Fatal(err)
+	}
+	if err := report.Execute(os.Stdout, result); err != nil {
+		log.Fatal(err)
+	}
 }
-

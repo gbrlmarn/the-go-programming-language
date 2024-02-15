@@ -7,17 +7,17 @@ import (
 )
 
 func Open(fileName string) error {
-    zr, err := zip.OpenReader(fileName)
-    if err != nil {
-        return err
-    }
-    defer zr.Close()
-    for _, f := range zr.File {
-        fmt.Printf("%s\n", f.Name)
-    }
-    return nil
+	zr, err := zip.OpenReader(fileName)
+	if err != nil {
+		return err
+	}
+	defer zr.Close()
+	for _, f := range zr.File {
+		fmt.Printf("%s\n", f.Name)
+	}
+	return nil
 }
 
 func init() {
-    arch.Register("zip", Open)
+	arch.Register("zip", Open)
 }

@@ -4,7 +4,7 @@ package main
 import "sort"
 
 func IsPalindrome(s sort.Interface) bool {
-	i, j := 0, s.Len() - 1
+	i, j := 0, s.Len()-1
 	for j > i {
 		if !s.Less(i, j) && !s.Less(j, i) {
 			i++
@@ -13,6 +13,5 @@ func IsPalindrome(s sort.Interface) bool {
 			return false
 		}
 	}
-	return true 
+	return true
 }
-

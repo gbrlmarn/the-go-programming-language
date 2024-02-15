@@ -26,7 +26,6 @@ func main() {
 	}
 }
 
-
 func echo(c net.Conn, shout string, delay time.Duration, wg *sync.WaitGroup) {
 	defer wg.Done()
 	fmt.Fprintln(c, "\t", strings.ToUpper(shout))
@@ -41,7 +40,7 @@ func handleConn(c net.Conn) {
 	text := make(chan string)
 	timeout := 10 * time.Second
 	timer := time.NewTimer(timeout)
-	
+
 	var wg sync.WaitGroup
 	defer func() {
 		c.Close()
@@ -54,7 +53,7 @@ func handleConn(c net.Conn) {
 		}
 		close(text)
 	}()
-	
+
 	for {
 		select {
 		case t := <-text:
@@ -67,5 +66,3 @@ func handleConn(c net.Conn) {
 		}
 	}
 }
-
-

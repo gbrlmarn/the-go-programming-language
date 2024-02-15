@@ -11,38 +11,38 @@ import (
 )
 
 func initIntSet() intset.IntSet {
-    return intset.IntSet{}
+	return intset.IntSet{}
 }
 
 func addAllIntSet(s intset.IntSet, ints []int) intset.IntSet {
-    for i := 0; i < len(ints); i++ {
-        s.Add(ints[i])
-    }
-    return s
+	for i := 0; i < len(ints); i++ {
+		s.Add(ints[i])
+	}
+	return s
 }
 
 func initHashSet() hashset.HashSet {
-    return make(hashset.HashSet)
+	return make(hashset.HashSet)
 }
 
 func addAllHashSet(s hashset.HashSet, ints []int) hashset.HashSet {
-    for i := 0; i < len(ints); i++ {
-        s.Add(ints[i])
-    }
-    return s
+	for i := 0; i < len(ints); i++ {
+		s.Add(ints[i])
+	}
+	return s
 }
 
 func randInts(n int) []int {
-    ints := make([]int, 0, n)
-    rand.Seed(time.Now().UnixNano())
-    for i := 0; i < n; i++ {
-        ints = append(ints, rand.Intn(math.MaxInt8)) 
-    }
-    return ints
+	ints := make([]int, 0, n)
+	rand.Seed(time.Now().UnixNano())
+	for i := 0; i < n; i++ {
+		ints = append(ints, rand.Intn(math.MaxInt8))
+	}
+	return ints
 }
 
 func benchmarkAdd(b *testing.B, n int, f func(int)) {
-    ints := randInts(n)
+	ints := randInts(n)
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < n; j++ {
 			f(ints[j])
@@ -51,103 +51,103 @@ func benchmarkAdd(b *testing.B, n int, f func(int)) {
 }
 
 func benchmarkUnionIntSets(b *testing.B, n int) {
-    ints1 := randInts(n)
-    ints2 := randInts(n)
-    s1 := initIntSet()
-    s2 := initIntSet()
-    addAllIntSet(s1, ints1)
-    addAllIntSet(s2, ints2)
-    for i := 0; i < b.N; i++ {
-        s1.UnionWith(&s2)
-    }
+	ints1 := randInts(n)
+	ints2 := randInts(n)
+	s1 := initIntSet()
+	s2 := initIntSet()
+	addAllIntSet(s1, ints1)
+	addAllIntSet(s2, ints2)
+	for i := 0; i < b.N; i++ {
+		s1.UnionWith(&s2)
+	}
 }
 
 func benchmarkUnionHashSets(b *testing.B, n int) {
-    ints1 := randInts(n)
-    ints2 := randInts(n)
-    s1 := initHashSet()
-    s2 := initHashSet()
-    addAllHashSet(s1, ints1)
-    addAllHashSet(s2, ints2)
-    for i := 0; i < b.N; i++ {
-        s1.UnionWith(s2)
-    }
+	ints1 := randInts(n)
+	ints2 := randInts(n)
+	s1 := initHashSet()
+	s2 := initHashSet()
+	addAllHashSet(s1, ints1)
+	addAllHashSet(s2, ints2)
+	for i := 0; i < b.N; i++ {
+		s1.UnionWith(s2)
+	}
 }
 
 func BenchmarkAddIntSet1(b *testing.B) {
-    s := initIntSet()
-    benchmarkAdd(b, 1, s.Add)
+	s := initIntSet()
+	benchmarkAdd(b, 1, s.Add)
 }
 func BenchmarkAddIntSet10(b *testing.B) {
-    s := initIntSet()
-    benchmarkAdd(b, 10, s.Add)
+	s := initIntSet()
+	benchmarkAdd(b, 10, s.Add)
 }
 func BenchmarkAddIntSet100(b *testing.B) {
-    s := initIntSet()
-    benchmarkAdd(b, 100, s.Add)
+	s := initIntSet()
+	benchmarkAdd(b, 100, s.Add)
 }
 func BenchmarkAddIntSet1000(b *testing.B) {
-    s := initIntSet()
-    benchmarkAdd(b, 1000, s.Add)
+	s := initIntSet()
+	benchmarkAdd(b, 1000, s.Add)
 }
 func BenchmarkAddIntSet10000(b *testing.B) {
-    s := initIntSet()
-    benchmarkAdd(b, 10000, s.Add)
+	s := initIntSet()
+	benchmarkAdd(b, 10000, s.Add)
 }
 
 func BenchmarkAddHashSet1(b *testing.B) {
-    s := initHashSet()
-    benchmarkAdd(b, 1, s.Add)
+	s := initHashSet()
+	benchmarkAdd(b, 1, s.Add)
 }
 func BenchmarkAddHashSet10(b *testing.B) {
-    s := initHashSet()
-    benchmarkAdd(b, 10, s.Add)
+	s := initHashSet()
+	benchmarkAdd(b, 10, s.Add)
 }
 func BenchmarkAddHashSet100(b *testing.B) {
-    s := initHashSet()
-    benchmarkAdd(b, 100, s.Add)
+	s := initHashSet()
+	benchmarkAdd(b, 100, s.Add)
 }
 func BenchmarkAddHashSet1000(b *testing.B) {
-    s := initHashSet()
-    benchmarkAdd(b, 1000, s.Add)
+	s := initHashSet()
+	benchmarkAdd(b, 1000, s.Add)
 }
 func BenchmarkAddHashSet10000(b *testing.B) {
-    s := initHashSet()
-    benchmarkAdd(b, 10000, s.Add)
+	s := initHashSet()
+	benchmarkAdd(b, 10000, s.Add)
 }
-
 
 func BenchmarkUnionIntSet1(b *testing.B) {
-    benchmarkUnionIntSets(b, 1)
+	benchmarkUnionIntSets(b, 1)
 }
 func BenchmarkUnionIntSet10(b *testing.B) {
-    benchmarkUnionIntSets(b, 10)
+	benchmarkUnionIntSets(b, 10)
 }
 func BenchmarkUnionIntSet100(b *testing.B) {
-    benchmarkUnionIntSets(b, 100)
+	benchmarkUnionIntSets(b, 100)
 }
 func BenchmarkUnionIntSet1000(b *testing.B) {
-    benchmarkUnionIntSets(b, 1000)
+	benchmarkUnionIntSets(b, 1000)
 }
 func BenchmarkUnionIntSet10000(b *testing.B) {
-    benchmarkUnionIntSets(b, 10000)
+	benchmarkUnionIntSets(b, 10000)
 }
 
 func BenchmarkUnionHashSet1(b *testing.B) {
-    benchmarkUnionHashSets(b, 1)
+	benchmarkUnionHashSets(b, 1)
 }
 func BenchmarkUnionHashSet10(b *testing.B) {
-    benchmarkUnionHashSets(b, 10)
+	benchmarkUnionHashSets(b, 10)
 }
 func BenchmarkUnionHashSet100(b *testing.B) {
-    benchmarkUnionHashSets(b, 100)
+	benchmarkUnionHashSets(b, 100)
 }
 func BenchmarkUnionHashSet1000(b *testing.B) {
-    benchmarkUnionHashSets(b, 1000)
+	benchmarkUnionHashSets(b, 1000)
 }
 func BenchmarkUnionHashSet10000(b *testing.B) {
-    benchmarkUnionHashSets(b, 10000)
+	benchmarkUnionHashSets(b, 10000)
 }
+
 // goos: linux
 // goarch: amd64
 // pkg: gopl/ch11/ex11.7

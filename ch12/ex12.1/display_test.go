@@ -8,7 +8,7 @@ import (
 	"sync"
 	"testing"
 
-    "gopl/ch7/examples/eval"
+	"gopl/ch7/examples/eval"
 )
 
 // NOTE: we can't use !+..!- comments to excerpt these tests
@@ -256,21 +256,20 @@ func Test(t *testing.T) {
 }
 
 func TestArrayKey(t *testing.T) {
-    Display("ArrayKey", map[[3]int]string{
-        {1, 2, 3}: "{1, 2, 3}",
-        {4, 5, 6}: "{4, 5, 6}",
-        {7, 8, 9}: "{7, 8, 9}",
-    })
+	Display("ArrayKey", map[[3]int]string{
+		{1, 2, 3}: "{1, 2, 3}",
+		{4, 5, 6}: "{4, 5, 6}",
+		{7, 8, 9}: "{7, 8, 9}",
+	})
 }
 
 func TestStructKey(t *testing.T) {
-    type Person struct {
-        name string
-        age int
-    }
-    Display("StructKey", map[Person]string{
-        {"Alice", 24}: "{Alice: 24}",
-        {"Bob", 25}: "{Bob: 25}",
-    })
+	type Person struct {
+		name string
+		age  int
+	}
+	Display("StructKey", map[Person]string{
+		{"Alice", 24}: "{Alice: 24}",
+		{"Bob", 25}:   "{Bob: 25}",
+	})
 }
-

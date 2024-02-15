@@ -6,7 +6,7 @@ import (
 )
 
 func BenchmarkComma(b *testing.B) {
-    for i := 0; i < 99999; i++ {
-        comma(fmt.Sprint(i))
-    }
+	for i := 0; i < 99999; i++ {
+		comma(fmt.Sprint(i))
+	}
 }

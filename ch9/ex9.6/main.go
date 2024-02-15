@@ -26,7 +26,7 @@ func cdraw(nprocs int) {
 	start := time.Now()
 	workers := runtime.GOMAXPROCS(nprocs)
 	var wg sync.WaitGroup // number of working goroutines
-    img := image.NewRGBA(image.Rect(0, 0, width, height))
+	img := image.NewRGBA(image.Rect(0, 0, width, height))
 	for w := 0; w < workers; w++ {
 		wg.Add(1)
 		// worker
@@ -43,7 +43,7 @@ func cdraw(nprocs int) {
 			}
 		}()
 	}
-	
+
 	// closer
 	go func() {
 		wg.Wait()
@@ -56,21 +56,20 @@ func cdraw(nprocs int) {
 }
 
 func mandlebrot(z complex128) color.Color {
-    const iterations = 200
-    const contrast = 15
+	const iterations = 200
+	const contrast = 15
 
-    var v complex128
-    for n := uint8(0); n < iterations; n++ {
-        v = v*v + z
-        if cmplx.Abs(v) > 2 {
-            return color.Gray{255 - contrast*n}
-       }
-    }
-    return color.Black
+	var v complex128
+	for n := uint8(0); n < iterations; n++ {
+		v = v*v + z
+		if cmplx.Abs(v) > 2 {
+			return color.Gray{255 - contrast*n}
+		}
+	}
+	return color.Black
 }
 
-
-// go run main.go 
+// go run main.go
 // encoded in 135.916µs	 with 1 CPUs
 // encoded in 111.583µs	 with 2 CPUs
 // encoded in 276.708µs	 with 3 CPUs

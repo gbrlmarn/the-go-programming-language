@@ -22,9 +22,9 @@ func TestIsPalindrome(t *testing.T) {
 		{"desserts", false},
 		// semi-palindrome
 	}
-    for _, test := range tests {
-        if got := IsPalindrome(test.input); got != test.want {
-            t.Errorf("IsPalindrome(%q) = %v", test.input, got)
-        }
-    }
+	for _, test := range tests {
+		if got := IsPalindrome(test.input); got != test.want {
+			t.Errorf("IsPalindrome(%q) = %v", test.input, got)
+		}
+	}
 }

@@ -17,7 +17,7 @@ func main() {
 		os.Exit(1)
 	}
 	for k, v := range visit(stuff, doc) {
-        fmt.Printf("%s: %s\n", k, v)
+		fmt.Printf("%s: %s\n", k, v)
 	}
 }
 
@@ -33,23 +33,23 @@ func visit(m map[string][]string, n *html.Node) map[string][]string {
 				}
 			}
 		case "img":
-            for _, img := range n.Attr {
-                if img.Key == "src" {
-                    m[n.Data] = append(m[n.Data], img.Val+"\n")
-                } 
-            }
+			for _, img := range n.Attr {
+				if img.Key == "src" {
+					m[n.Data] = append(m[n.Data], img.Val+"\n")
+				}
+			}
 		case "script":
-            for _, script := range n.Attr {
-                if script.Key == "src" {
-                    m[n.Data] = append(m[n.Data], script.Val+"\n")
-                }
-            }
+			for _, script := range n.Attr {
+				if script.Key == "src" {
+					m[n.Data] = append(m[n.Data], script.Val+"\n")
+				}
+			}
 		case "link":
-            for _, link := range n.Attr {
-                if link.Key == "href" {
-                    m[n.Data] = append(m[n.Data], link.Val+"\n")
-                }
-            }
+			for _, link := range n.Attr {
+				if link.Key == "href" {
+					m[n.Data] = append(m[n.Data], link.Val+"\n")
+				}
+			}
 		}
 	}
 	for c := n.FirstChild; c != nil; c = c.NextSibling {

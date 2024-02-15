@@ -33,10 +33,10 @@ func Test(t *testing.T) {
 		},
 	}
 
-    // Encoding 
-    data, err := Marshal(strangelove)
-    if err != nil {
-        t.Fatalf("Marshal failed: %v", err)
-    }
-    t.Logf("Marshal() = %s\n", data)
+	// Encoding
+	data, err := Marshal(strangelove)
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+	t.Logf("Marshal() = %s\n", data)
 }

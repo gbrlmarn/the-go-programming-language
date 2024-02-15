@@ -34,13 +34,13 @@ func main() {
 	}
 
 	fmt.Printf("\n%d issues less than a month old:\n", len(lmonth))
-    printIssues(lmonth)
+	printIssues(lmonth)
 
 	fmt.Printf("\n%d issues less than a year old:\n", len(lyear))
-    printIssues(lyear)
+	printIssues(lyear)
 
 	fmt.Printf("\n%d issues more than a year old:\n", len(myear))
-    printIssues(myear)
+	printIssues(myear)
 }
 
 func age(t time.Time) int {

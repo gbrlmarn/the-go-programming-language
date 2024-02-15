@@ -11,7 +11,6 @@ import (
 	"path/filepath"
 )
 
-
 func main() {
 	// Determine the initial directories.
 	flag.Parse()

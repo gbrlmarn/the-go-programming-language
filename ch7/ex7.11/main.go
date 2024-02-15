@@ -89,7 +89,7 @@ func (db database) update(w http.ResponseWriter, req *http.Request) {
 }
 
 func (db database) delete(w http.ResponseWriter, req *http.Request) {
-item := req.URL.Query().Get("item")
+	item := req.URL.Query().Get("item")
 	_, ok := db[item]
 	if !ok {
 		w.WriteHeader(http.StatusNotFound) // 404
@@ -99,4 +99,3 @@ item := req.URL.Query().Get("item")
 	delete(db, item)
 	fmt.Fprintf(w, "%s has been deleted\n", item)
 }
-

@@ -1,15 +1,15 @@
-package intset 
+package intset
 
 import (
 	"testing"
 )
 
 func InitIntSet() IntSet {
-    return IntSet{}
+	return IntSet{}
 }
 
 func TestHas(t *testing.T) {
-    s := InitIntSet()
+	s := InitIntSet()
 	s.Add(1)
 	if !s.Has(1) {
 		t.Errorf("!s.Has(1)")
@@ -17,7 +17,7 @@ func TestHas(t *testing.T) {
 }
 
 func TestAdd(t *testing.T) {
-    s := InitIntSet()
+	s := InitIntSet()
 	s.Add(1)
 	if !s.Has(1) {
 		t.Errorf("!s.Has(1)")
@@ -29,10 +29,10 @@ func TestAdd(t *testing.T) {
 }
 
 func TestUnionWith(t *testing.T) {
-    s1:= InitIntSet()
+	s1 := InitIntSet()
 	s1.Add(1)
 	s1.Add(2)
-    s2:= InitIntSet()
+	s2 := InitIntSet()
 	s2.Add(3)
 	s2.Add(4)
 	s1.UnionWith(&s2)
@@ -45,11 +45,11 @@ func TestUnionWith(t *testing.T) {
 }
 
 func TestString(t *testing.T) {
-    s := InitIntSet()
+	s := InitIntSet()
 	s.Add(1)
 	s.Add(2)
 	s.Add(3)
-    if s.String() != "{1 2 3}" {
-        t.Errorf("got: %v\nwant: %v", s.String(), "{1 2 3}") 
-    }
+	if s.String() != "{1 2 3}" {
+		t.Errorf("got: %v\nwant: %v", s.String(), "{1 2 3}")
+	}
 }

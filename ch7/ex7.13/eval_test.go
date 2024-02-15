@@ -63,4 +63,3 @@ func TestString(t *testing.T) {
 		}
 	}
 }
-

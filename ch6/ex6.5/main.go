@@ -1,5 +1,6 @@
 // Exercise 6.5: The type of each word used by IntSet is uint64, but 64-bit arithmetic may be inefficient on a 32-bit platform. Modify the program to use the uint type, which is the most efficient unsigned integer type for the platform. Instead of dividing by 64, define a constant holding the effective size of uint in bits, 32 or 64. You can use the perhaps too-clever expression 32 << (^uint(0) >> 63) for this purpose.
 package main
+
 import (
 	"bytes"
 	"fmt"
@@ -7,7 +8,7 @@ import (
 
 // UINT size.
 // Depends on architecture 32 or 64 bits.
-const UINT = 32 <<(^uint(0) >> 63)
+const UINT = 32 << (^uint(0) >> 63)
 
 // An IntSet is a set of small non-negative integers.
 // Its zero value represents the empty set.
@@ -61,4 +62,3 @@ func (s *IntSet) String() string {
 	buf.WriteByte('}')
 	return buf.String()
 }
-

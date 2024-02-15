@@ -9,7 +9,7 @@ import (
 	"os"
 )
 
-type Node interface{
+type Node interface {
 	String() string
 } // CharData or *Element
 
@@ -59,7 +59,7 @@ func parse(r io.Reader) (Node, error) {
 		switch tok := tok.(type) {
 		case xml.StartElement:
 			el := Element{tok.Name, tok.Attr, nil}
-			if len(stack) > 0  {
+			if len(stack) > 0 {
 				stack[len(stack)-1].Children = append(stack[len(stack)-1].Children, el)
 			}
 			stack = append(stack, el) // push
@@ -71,7 +71,7 @@ func parse(r io.Reader) (Node, error) {
 			}
 			stack = stack[:len(stack)-1] // pop
 		case xml.CharData:
-			if len(stack) > 0  {
+			if len(stack) > 0 {
 				stack[len(stack)-1].Children = append(stack[len(stack)-1].Children, CharData(tok))
 			}
 		}
@@ -89,4 +89,3 @@ func main() {
 	}
 	fmt.Println(root)
 }
- 

@@ -37,4 +37,3 @@ type min struct {
 }
 
 type Env map[Var]float64
-

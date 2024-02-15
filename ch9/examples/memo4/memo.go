@@ -6,11 +6,11 @@ import "sync"
 
 type result struct {
 	value interface{}
-	err error
+	err   error
 }
 
 type entry struct {
-	res result
+	res   result
 	ready chan struct{} // closed when res is ready
 }
 
@@ -20,8 +20,8 @@ func New(f Func) *Memo {
 
 // A memo caches the results of calling a Func.
 type Memo struct {
-	f Func
-	mu sync.Mutex // guards cache
+	f     Func
+	mu    sync.Mutex // guards cache
 	cache map[string]*entry
 }
 

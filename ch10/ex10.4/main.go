@@ -18,7 +18,7 @@ type Pkg struct {
 }
 
 func main() {
-    key := os.Args[1]
+	key := os.Args[1]
 	cmd := exec.Command("go", "list", "-json", "...")
 	out, err := cmd.Output()
 	if err != nil {
@@ -40,10 +40,10 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-            if sort.SearchStrings(p.Deps, key) != len(p.Deps) { 
-                fmt.Println(p.ImpPath)
-            }
-            buf.Truncate(0)
+			if sort.SearchStrings(p.Deps, key) != len(p.Deps) {
+				fmt.Println(p.ImpPath)
+			}
+			buf.Truncate(0)
 		}
 	}
 }

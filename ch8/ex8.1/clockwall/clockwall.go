@@ -30,7 +30,7 @@ func main() {
 	for _, c := range clocks {
 		go listen(c)
 	}
-	
+
 	for {
 		time.Sleep(time.Minute)
 	}
@@ -56,4 +56,3 @@ func listen(c clock) {
 	defer conn.Close()
 	c.watch(os.Stdout, conn)
 }
-

@@ -2,27 +2,27 @@
 
 package main
 
-import(
-  "fmt"
-  "os"
-  "strings"
+import (
+	"fmt"
+	"os"
+	"strings"
 )
 
 func echo1() {
-  fmt.Println("echo1:")
-  for i := 1; i < len(os.Args); i++ {
-    fmt.Printf("%d: %s\n", i, os.Args[i])
-  }
+	fmt.Println("echo1:")
+	for i := 1; i < len(os.Args); i++ {
+		fmt.Printf("%d: %s\n", i, os.Args[i])
+	}
 }
 
 func echo2() {
-  fmt.Println("echo2:")
-  for idx, arg := range os.Args[1:] {
-    fmt.Printf("%d: %s\n", idx, arg)
-  }
+	fmt.Println("echo2:")
+	for idx, arg := range os.Args[1:] {
+		fmt.Printf("%d: %s\n", idx, arg)
+	}
 }
 
 func main() {
-  echo1();
-  echo2();
+	echo1()
+	echo2()
 }

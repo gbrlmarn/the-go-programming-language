@@ -38,11 +38,11 @@ func main() {
 	}
 	go func() {
 		n.Wait()
-		close(rootSizes)		
+		close(rootSizes)
 	}()
-	
+
 	// Print the results periodically.
-	var tick <- chan time.Time
+	var tick <-chan time.Time
 	if *verbose {
 		tick = time.Tick(500 * time.Millisecond)
 	}
@@ -51,13 +51,13 @@ func main() {
 loop:
 	for {
 		select {
-		case rsize, ok := <- rootSizes:
+		case rsize, ok := <-rootSizes:
 			if !ok {
 				break loop // fileSizes was closed
 			}
 			nfiles[rsize.i]++
 			nbytes[rsize.i] += rsize.s
-		case <- tick:
+		case <-tick:
 			printDiskUsage(roots, nfiles, nbytes)
 		}
 	}
@@ -100,7 +100,7 @@ func dirents(dir string) []fs.DirEntry {
 		return nil // cancelled
 	}
 	defer func() { <-sema }() // release token
-	
+
 	entries, err := os.ReadDir(dir)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "du1: %v\n", err)
@@ -108,4 +108,3 @@ func dirents(dir string) []fs.DirEntry {
 	}
 	return entries
 }
-

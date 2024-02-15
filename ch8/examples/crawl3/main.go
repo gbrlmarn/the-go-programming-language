@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"gopl/ch5/examples/links"
 	"log"
 	"os"
-	"gopl/ch5/examples/links"
 )
 
 // tokens is a counting semaphore used to
@@ -23,7 +23,7 @@ func crawl(url string) []string {
 }
 
 func main() {
-	worklist := make(chan []string) // list of URLs, may have duplicates
+	worklist := make(chan []string)  // list of URLs, may have duplicates
 	unseenLinks := make(chan string) // de-duplicated URLs
 
 	// Add command-line arguments to worklist

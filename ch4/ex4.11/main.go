@@ -14,7 +14,7 @@ import (
 
 const (
 	GithubAPI = "https://api.github.com/repos"
-    usage     = `usage: 
+	usage     = `usage: 
     search repo:<reponame> is:<open/close> <branch> <description>
     [read] owner repo issuenumber`
 )
@@ -24,18 +24,18 @@ func main() {
 		fmt.Fprintln(os.Stderr, usage)
 		os.Exit(1)
 	}
-    cmd := os.Args[1]
-    args := os.Args[2:]
-    if cmd == "search" {
-	    search(os.Args[1:])
-        os.Exit(0)
-    }
+	cmd := os.Args[1]
+	args := os.Args[2:]
+	if cmd == "search" {
+		search(os.Args[1:])
+		os.Exit(0)
+	}
 
-    owner, repo, number := args[0], args[1], args[2]
-    switch cmd {
-    case "read":
-        read(owner, repo, number)
-    }
+	owner, repo, number := args[0], args[1], args[2]
+	switch cmd {
+	case "read":
+		read(owner, repo, number)
+	}
 }
 
 func search(name []string) {
@@ -51,12 +51,12 @@ func search(name []string) {
 }
 
 func read(owner, repo, number string) {
-    issue, err := GetIssue(owner, repo, number)
-    if err != nil {
-        log.Fatal(err)
-    }
+	issue, err := GetIssue(owner, repo, number)
+	if err != nil {
+		log.Fatal(err)
+	}
 	fmt.Printf("#%-5d %9.9s %.55s\n%s\n",
-	    issue.Number, issue.User.Login, issue.Title, issue.Body)
+		issue.Number, issue.User.Login, issue.Title, issue.Body)
 }
 
 func GetIssue(owner, repo, number string) (*github.Issue, error) {
@@ -75,4 +75,3 @@ func GetIssue(owner, repo, number string) (*github.Issue, error) {
 	}
 	return &issue, nil
 }
-

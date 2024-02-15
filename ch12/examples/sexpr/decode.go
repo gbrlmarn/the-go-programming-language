@@ -68,27 +68,27 @@ func readList(lex *lexer, v reflect.Value) {
 
 	case reflect.Struct: // ((name value) ...)
 		for !endList(lex) {
-            lex.consume('(')
-            if lex.token != scanner.Ident {
-                panic(fmt.Sprintf("got token %q, want field name", lex.text()))
-            }
-            name := lex.text()
-            lex.next()
-            read(lex, v.FieldByName(name))
-            lex.consume(')')
+			lex.consume('(')
+			if lex.token != scanner.Ident {
+				panic(fmt.Sprintf("got token %q, want field name", lex.text()))
+			}
+			name := lex.text()
+			lex.next()
+			read(lex, v.FieldByName(name))
+			lex.consume(')')
 		}
 
 	case reflect.Map: // ((key value) ...)
-        v.Set(reflect.MakeMap(v.Type()))
-        for !endList(lex) {
-            lex.consume('(')
-            key := reflect.New(v.Type().Key()).Elem()
-            read(lex, key)
-            value := reflect.New(v.Type().Elem()).Elem()
-            read(lex, value)
-            v.SetMapIndex(key, value)
-            lex.consume(')')
-        }
+		v.Set(reflect.MakeMap(v.Type()))
+		for !endList(lex) {
+			lex.consume('(')
+			key := reflect.New(v.Type().Key()).Elem()
+			read(lex, key)
+			value := reflect.New(v.Type().Elem()).Elem()
+			read(lex, value)
+			v.SetMapIndex(key, value)
+			lex.consume(')')
+		}
 
 	default:
 		panic(fmt.Sprintf("cannot decode list into %v", v.Type()))
@@ -108,15 +108,15 @@ func endList(lex *lexer) bool {
 // Unmarshal parses S-expression data and populates the variable
 // whose address is in the non-nil pointer out.
 func Unmarshal(data []byte, out interface{}) (err error) {
-    lex := &lexer{scan: scanner.Scanner{Mode: scanner.GoTokens}}
-    lex.scan.Init(bytes.NewReader(data))
-    lex.next() // get the first token
-    defer func() {
-        // NOTE: this is not an exmaple of ideal error handling.
-        if x := recover(); x != nil {
-            err = fmt.Errorf("error at %s: %v", lex.scan.Position, x)
-        }
-    }()
-    read(lex, reflect.ValueOf(out).Elem())
-    return nil
+	lex := &lexer{scan: scanner.Scanner{Mode: scanner.GoTokens}}
+	lex.scan.Init(bytes.NewReader(data))
+	lex.next() // get the first token
+	defer func() {
+		// NOTE: this is not an exmaple of ideal error handling.
+		if x := recover(); x != nil {
+			err = fmt.Errorf("error at %s: %v", lex.scan.Position, x)
+		}
+	}()
+	read(lex, reflect.ValueOf(out).Elem())
+	return nil
 }

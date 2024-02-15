@@ -1,15 +1,15 @@
 package popcount_test
 
 import (
-    "testing"
+	"testing"
 
-    "gopl/ch2/examples/popcount"
+	"gopl/ch2/examples/popcount"
 )
 
 func BenchmarkPopCount(b *testing.B) {
-    for i := 0; i < b.N; i++ {
-        popcount.PopCount(0x123456789ABCDEF)
-    }
+	for i := 0; i < b.N; i++ {
+		popcount.PopCount(0x123456789ABCDEF)
+	}
 }
 
 // go test -bench=. gopl/ch2/examples/popcount

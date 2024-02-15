@@ -7,9 +7,9 @@ import (
 )
 
 func BenchmarkPopCount(b *testing.B) {
-    for i := 0; i < b.N; i++ {
-        popcount.PopCount(0x123456789ABCDEF)
-    }
+	for i := 0; i < b.N; i++ {
+		popcount.PopCount(0x123456789ABCDEF)
+	}
 }
 
 // pkg: gopl/ch2/ex2.4

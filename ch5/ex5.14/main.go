@@ -25,21 +25,21 @@ var prereqs = map[string][]string{
 }
 
 func breadthFirst(f func(item string) []string, worklist []string) {
-    seen := make(map[string]bool)
-    for len(worklist) > 0 {
-        items := worklist
-        worklist = nil
-        for _, item := range items {
-            if !seen[item] {
-                seen[item] = true
-                worklist = append(worklist, f(item)...)
-            }
-        }
-    }
+	seen := make(map[string]bool)
+	for len(worklist) > 0 {
+		items := worklist
+		worklist = nil
+		for _, item := range items {
+			if !seen[item] {
+				seen[item] = true
+				worklist = append(worklist, f(item)...)
+			}
+		}
+	}
 }
 
 func crawl(course string) []string {
-    fmt.Println(course)
+	fmt.Println(course)
 	return prereqs[course]
 }
 

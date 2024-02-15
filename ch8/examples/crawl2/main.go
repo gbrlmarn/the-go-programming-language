@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"gopl/ch5/examples/links"
+	"log"
 )
 
 // tokens is a counting semaphore used to

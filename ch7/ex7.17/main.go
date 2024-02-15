@@ -7,13 +7,12 @@ import (
 	"io"
 	"os"
 	"strings"
-
 )
 
 func main() {
 	dec := xml.NewDecoder(os.Stdin)
 	var foundAttr bool
-	var stack []string     // stack of elements
+	var stack []string // stack of elements
 	for {
 		tok, err := dec.Token()
 		if err == io.EOF {
@@ -63,4 +62,3 @@ func contains(s []string, str string) bool {
 
 	return false
 }
-

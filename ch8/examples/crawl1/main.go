@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"gopl/ch5/examples/links"
 	"log"
 	"os"
-	"gopl/ch5/examples/links"
 )
 
 func crawl(url string) []string {

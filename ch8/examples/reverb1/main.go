@@ -24,7 +24,6 @@ func main() {
 	}
 }
 
-
 func echo(c net.Conn, shout string, delay time.Duration) {
 	fmt.Fprintln(c, "\t", strings.ToUpper(shout))
 	time.Sleep(delay)

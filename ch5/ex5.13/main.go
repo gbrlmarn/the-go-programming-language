@@ -4,8 +4,8 @@ package main
 import (
 	"fmt"
 	"log"
-	"net/url"
 	"net/http"
+	"net/url"
 	"os"
 
 	"gopl/ch5/examples/links"
@@ -16,27 +16,27 @@ const (
 )
 
 func breadthFirst(f func(item string) []string, worklist []string) {
-    seen := make(map[string]bool)
-    for len(worklist) > 0 {
-        items := worklist
-        worklist = nil
-        for _, item := range items {
-            if !seen[item] {
-                seen[item] = true
-                worklist = append(worklist, f(item)...)
-            }
-        }
-    }
+	seen := make(map[string]bool)
+	for len(worklist) > 0 {
+		items := worklist
+		worklist = nil
+		for _, item := range items {
+			if !seen[item] {
+				seen[item] = true
+				worklist = append(worklist, f(item)...)
+			}
+		}
+	}
 }
 
 func crawl(u string) []string {
 	fmt.Println(u)
-    list, err := links.Extract(u)
-    if err != nil {
-        log.Print(err)
-    }
+	list, err := links.Extract(u)
+	if err != nil {
+		log.Print(err)
+	}
 
-	os.Mkdir(URLSDIR, 0777) 
+	os.Mkdir(URLSDIR, 0777)
 	for _, v := range list {
 		//fmt.Println(url.PathEscape(v[8:]))
 		u, err := url.Parse(v)
@@ -53,7 +53,7 @@ func crawl(u string) []string {
 		}
 		defer resp.Body.Close()
 
-		tmp := url.PathEscape(v) // html file name 
+		tmp := url.PathEscape(v) // html file name
 		f, err := os.Create(hpath + "/" + tmp + ".html")
 		if err != nil {
 			log.Fatal(err)
@@ -61,12 +61,12 @@ func crawl(u string) []string {
 		f.ReadFrom(resp.Body)
 		fmt.Printf("Content of:\t %s.html writed\n", tmp)
 	}
-	
-    return list
+
+	return list
 }
 
 func main() {
-    // Crawl the web breadth-first,
-    // starting from the command-line arguments.
-    breadthFirst(crawl, os.Args[1:])
+	// Crawl the web breadth-first,
+	// starting from the command-line arguments.
+	breadthFirst(crawl, os.Args[1:])
 }

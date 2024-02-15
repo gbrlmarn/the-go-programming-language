@@ -10,8 +10,8 @@ func main() {
 	fmt.Println(max())
 	fmt.Println(min(1))
 	fmt.Println(max(1))
-	fmt.Println(min(1,2,3))
-	fmt.Println(max(1,2,3))
+	fmt.Println(min(1, 2, 3))
+	fmt.Println(max(1, 2, 3))
 
 	fmt.Println()
 
@@ -19,8 +19,8 @@ func main() {
 	// fmt.Println(max2()) // will not compile
 	fmt.Println(min2(1))
 	fmt.Println(max2(1))
-	fmt.Println(min2(1,2,3))
-	fmt.Println(max2(1,2,3))
+	fmt.Println(min2(1, 2, 3))
+	fmt.Println(max2(1, 2, 3))
 }
 
 func min(vals ...int) int {
@@ -33,7 +33,7 @@ func min(vals ...int) int {
 			min = val
 		}
 	}
-	return min 
+	return min
 }
 
 func max(vals ...int) int {
@@ -57,7 +57,7 @@ func min2(first int, others ...int) int {
 			min = val
 		}
 	}
-	return min 
+	return min
 }
 
 func max2(first int, others ...int) int {

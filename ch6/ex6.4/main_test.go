@@ -1,7 +1,6 @@
 package main
 
-import
-	"testing"
+import "testing"
 
 func TestElems(t *testing.T) {
 	s := &IntSet{}

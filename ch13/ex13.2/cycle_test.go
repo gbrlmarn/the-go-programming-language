@@ -90,8 +90,8 @@ func Example_cycle1() {
 
 	// Output:
 	// false
-	// false 
-	// false 
+	// false
+	// false
 }
 
 func Example_cycle2() {
@@ -112,6 +112,6 @@ func Example_cycle2() {
 	// true
 	// true
 	// true
-	// true 
-	// true 
+	// true
+	// true
 }

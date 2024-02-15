@@ -13,9 +13,9 @@ func main() {
 		A string        // untrusted plain text
 		B template.HTML // trusted HTML
 	}
-    data.A = "<b>Hello!</b>"
-    data.B = "<b>Hello!</b>"
-    if err := t.Execute(os.Stdout, data); err != nil {
-        log.Fatal(err)
-    }
+	data.A = "<b>Hello!</b>"
+	data.B = "<b>Hello!</b>"
+	if err := t.Execute(os.Stdout, data); err != nil {
+		log.Fatal(err)
+	}
 }

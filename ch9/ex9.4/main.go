@@ -8,9 +8,9 @@ func pipe(c int) (in chan int, out chan int) {
 		in = out
 		out = make(chan int)
 		go func(in chan int, out chan int) {
-		for v := range in {
-			out <- v
-		}
+			for v := range in {
+				out <- v
+			}
 			close(out)
 		}(in, out)
 	}

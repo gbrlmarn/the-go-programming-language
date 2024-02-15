@@ -47,4 +47,3 @@ func (m min) String() string {
 	b.WriteString("]")
 	return b.String()
 }
-

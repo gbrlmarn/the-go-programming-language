@@ -48,11 +48,11 @@ func handleConn(conn net.Conn) {
 	ch := make(chan string) // outgoing client messages
 	go clientWriter(conn, ch)
 	who := conn.RemoteAddr().String()
-	
+
 	var cli client
 	cli.name = who
 	cli.out = ch
-	
+
 	ch <- "You are " + who
 	messages <- who + " has arrived"
 	entering <- cli

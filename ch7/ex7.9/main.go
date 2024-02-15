@@ -33,13 +33,13 @@ func length(s string) time.Duration {
 }
 
 type customSort struct {
-	t []*Track
+	t    []*Track
 	less func(x, y *Track) bool
 }
 
-func (x customSort) Len() int { return len(x.t) }
+func (x customSort) Len() int           { return len(x.t) }
 func (x customSort) Less(i, j int) bool { return x.less(x.t[i], x.t[j]) }
-func (x customSort) Swap(i, j int) { x.t[i], x.t[j] = x.t[j], x.t[i] }
+func (x customSort) Swap(i, j int)      { x.t[i], x.t[j] = x.t[j], x.t[i] }
 
 func by(fld string) func(x, y *Track) bool {
 	switch fld {
@@ -83,7 +83,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 	case "/Length":
 		sort.Sort(customSort{tracks, by("Length")})
 	}
-	
+
 	tmpl := template.Must(template.ParseFiles("index.html"))
 	if err := tmpl.Execute(w, &tracks); err != nil {
 		log.Println(err)
@@ -94,4 +94,3 @@ func main() {
 	http.HandleFunc("/", index)
 	log.Fatal(http.ListenAndServe(":3000", nil))
 }
-

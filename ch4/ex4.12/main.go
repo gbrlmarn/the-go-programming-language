@@ -12,38 +12,38 @@ import (
 )
 
 const (
-    XKCD = "https://xkcd.com/"
-    API = "/info.0.json"
-    usage = `go run main index_number`
+	XKCD  = "https://xkcd.com/"
+	API   = "/info.0.json"
+	usage = `go run main index_number`
 )
 
 func main() {
-    if len(os.Args) < 2 {
-        fmt.Fprintln(os.Stderr, usage)
-        os.Exit(1)
-    }
-    s := XKCD + os.Args[1] + API
-    resp, err := http.Get(s)
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer resp.Body.Close()
-    body, err := io.ReadAll(resp.Body)
-    if err != nil {
-        log.Fatal(err)
-    }
-    c := make(map[string]string)
-    json.Unmarshal(body, &c) // ignore err
-    story := c["transcript"]
-    story = clean(story)
-    fmt.Println(s)
-    fmt.Println(story)
+	if len(os.Args) < 2 {
+		fmt.Fprintln(os.Stderr, usage)
+		os.Exit(1)
+	}
+	s := XKCD + os.Args[1] + API
+	resp, err := http.Get(s)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	c := make(map[string]string)
+	json.Unmarshal(body, &c) // ignore err
+	story := c["transcript"]
+	story = clean(story)
+	fmt.Println(s)
+	fmt.Println(story)
 }
 
 func clean(story string) string {
-    story = strings.Replace(story, "[[", "", -1)
-    story = strings.Replace(story, "]]", "", -1)
-    story = strings.Replace(story, "{{", "", -1)
-    story = strings.Replace(story, "}}", "", -1)
-    return story
+	story = strings.Replace(story, "[[", "", -1)
+	story = strings.Replace(story, "]]", "", -1)
+	story = strings.Replace(story, "{{", "", -1)
+	story = strings.Replace(story, "}}", "", -1)
+	return story
 }

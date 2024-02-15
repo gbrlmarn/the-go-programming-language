@@ -8,7 +8,7 @@ import (
 	"sync"
 	"testing"
 
-    "gopl/ch7/examples/eval"
+	"gopl/ch7/examples/eval"
 )
 
 func Example_expr() {
@@ -261,13 +261,13 @@ func TestMaxDepth(t *testing.T) {
 	if true {
 		Display("c", c)
 		// Output:
-        // Display c (display.Cycle):
-        // c.Value = 42
-        // (*c.Tail).Value = 42
-        // (*(*c.Tail).Tail).Value = 42
-        // (*(*(*c.Tail).Tail).Tail).Value = 42
-        // (*(*(*(*c.Tail).Tail).Tail).Tail).Value = 42
-        // (*(*(*(*(*c.Tail).Tail).Tail).Tail).Tail).Value = 42
-        // (*(*(*(*(*c.Tail).Tail).Tail).Tail).Tail).Tail = *display.Cycle 0xc0000273b0
+		// Display c (display.Cycle):
+		// c.Value = 42
+		// (*c.Tail).Value = 42
+		// (*(*c.Tail).Tail).Value = 42
+		// (*(*(*c.Tail).Tail).Tail).Value = 42
+		// (*(*(*(*c.Tail).Tail).Tail).Tail).Value = 42
+		// (*(*(*(*(*c.Tail).Tail).Tail).Tail).Tail).Value = 42
+		// (*(*(*(*(*c.Tail).Tail).Tail).Tail).Tail).Tail = *display.Cycle 0xc0000273b0
 	}
 }

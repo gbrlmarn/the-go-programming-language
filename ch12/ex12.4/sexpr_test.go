@@ -33,17 +33,17 @@ func Test(t *testing.T) {
 		},
 	}
 
-    // Encoding 
-    data, err := Marshal(strangelove)
-    if err != nil {
-        t.Fatalf("Marshal failed: %v", err)
-    }
-    t.Logf("Marshal() = %s\n", data)
+	// Encoding
+	data, err := Marshal(strangelove)
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+	t.Logf("Marshal() = %s\n", data)
 
-    // Pretty-print it:
-    data, err = MarshalIndent(strangelove)
-    if err != nil {
-        t.Fatal(err)
-    }
-    t.Logf("MarshalIdent() = %s\n", data)
+	// Pretty-print it:
+	data, err = MarshalIndent(strangelove)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Logf("MarshalIdent() = %s\n", data)
 }

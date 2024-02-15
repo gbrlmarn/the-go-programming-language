@@ -6,8 +6,8 @@ import (
 	"os"
 
 	"gopl/ch10/ex10.2/arch"
-    _ "gopl/ch10/ex10.2/arch/tar"
-    _ "gopl/ch10/ex10.2/arch/zip"
+	_ "gopl/ch10/ex10.2/arch/tar"
+	_ "gopl/ch10/ex10.2/arch/zip"
 )
 
 func main() {

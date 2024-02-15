@@ -36,7 +36,7 @@ func mustCopy(dst io.Writer, src io.Reader) {
 	}
 }
 
-func execCmd (w io.Writer, cmdn string, args ...string) {
+func execCmd(w io.Writer, cmdn string, args ...string) {
 	cmd := exec.Command(cmdn, args...)
 	cmd.Stdout = w
 	if err := cmd.Run(); err != nil {
@@ -46,13 +46,13 @@ func execCmd (w io.Writer, cmdn string, args ...string) {
 
 func handleConn(c net.Conn) {
 	defer c.Close()
-    input := bufio.NewScanner(c)
+	input := bufio.NewScanner(c)
 	for input.Scan() {
-        cmds := strings.Split(input.Text(), " ")
-        switch cmds[0] {
-        case "ls":
+		cmds := strings.Split(input.Text(), " ")
+		switch cmds[0] {
+		case "ls":
 			execCmd(c, cmds[0], cmds[1:]...)
-        case "cd":
+		case "cd":
 			if len(cmds) < 2 {
 				mustCopy(c, strings.NewReader(help))
 			} else {

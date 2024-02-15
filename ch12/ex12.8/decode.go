@@ -70,27 +70,27 @@ func readList(lex *lexer, v reflect.Value) {
 
 	case reflect.Struct: // ((name value) ...)
 		for !endList(lex) {
-            lex.consume('(')
-            if lex.token != scanner.Ident {
-                panic(fmt.Sprintf("got token %q, want field name", lex.text()))
-            }
-            name := lex.text()
-            lex.next()
-            read(lex, v.FieldByName(name))
-            lex.consume(')')
+			lex.consume('(')
+			if lex.token != scanner.Ident {
+				panic(fmt.Sprintf("got token %q, want field name", lex.text()))
+			}
+			name := lex.text()
+			lex.next()
+			read(lex, v.FieldByName(name))
+			lex.consume(')')
 		}
 
 	case reflect.Map: // ((key value) ...)
-        v.Set(reflect.MakeMap(v.Type()))
-        for !endList(lex) {
-            lex.consume('(')
-            key := reflect.New(v.Type().Key()).Elem()
-            read(lex, key)
-            value := reflect.New(v.Type().Elem()).Elem()
-            read(lex, value)
-            v.SetMapIndex(key, value)
-            lex.consume(')')
-        }
+		v.Set(reflect.MakeMap(v.Type()))
+		for !endList(lex) {
+			lex.consume('(')
+			key := reflect.New(v.Type().Key()).Elem()
+			read(lex, key)
+			value := reflect.New(v.Type().Elem()).Elem()
+			read(lex, value)
+			v.SetMapIndex(key, value)
+			lex.consume(')')
+		}
 
 	default:
 		panic(fmt.Sprintf("cannot decode list into %v", v.Type()))
@@ -108,34 +108,34 @@ func endList(lex *lexer) bool {
 }
 
 type Decoder struct {
-    lex *lexer
+	lex *lexer
 }
 
 func NewDecoder(r io.Reader) *Decoder {
-    scan := scanner.Scanner{Mode: scanner.GoTokens}
-    scan.Init(r)
-    return &Decoder{&lexer{scan: scan}}
+	scan := scanner.Scanner{Mode: scanner.GoTokens}
+	scan.Init(r)
+	return &Decoder{&lexer{scan: scan}}
 }
 
 func (d *Decoder) Decode(v any) (err error) {
-    d.lex.next() // get the first token
-    defer func() {
-        // NOTE: this is not an exmaple of ideal error handling.
-        if x := recover(); x != nil {
-            err = fmt.Errorf("error at %s: %v", d.lex.scan.Position, x)
-        }
-    }()
-    read(d.lex, reflect.ValueOf(v).Elem())
-    return nil
+	d.lex.next() // get the first token
+	defer func() {
+		// NOTE: this is not an exmaple of ideal error handling.
+		if x := recover(); x != nil {
+			err = fmt.Errorf("error at %s: %v", d.lex.scan.Position, x)
+		}
+	}()
+	read(d.lex, reflect.ValueOf(v).Elem())
+	return nil
 }
 
 func (d *Decoder) More() bool {
-    return d.lex.token != scanner.EOF
+	return d.lex.token != scanner.EOF
 }
 
 // Unmarshal parses S-expression data and populates the variable
 // whose address is in the non-nil pointer out.
 func Unmarshal(data []byte, out interface{}) (err error) {
-    d := NewDecoder(bytes.NewReader(data))
-    return d.Decode(out)
+	d := NewDecoder(bytes.NewReader(data))
+	return d.Decode(out)
 }

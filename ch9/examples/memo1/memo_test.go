@@ -34,9 +34,6 @@ func TestConcurrent(t *testing.T) {
 // PASS
 // ok  	command-line-arguments	1.794s
 
-
-
-
 // go test -run=TestConcurrent -race -v memo_test.go
 // <TestConcurrent -race -v memo_test.go
 // === RUN   TestConcurrent

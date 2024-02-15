@@ -33,7 +33,7 @@ func outline(url string) error {
 	headings := ElementsByTagName(doc, "h1", "h2", "h3", "h4")
 	fmt.Println(len(images))
 	fmt.Println(len(headings))
-	
+
 	return nil
 }
 
@@ -51,7 +51,8 @@ func ElementsByTagName(doc *html.Node, name ...string) []*html.Node {
 	pre := func(doc *html.Node) {
 		for _, n := range name {
 			if doc.Type == html.ElementNode && doc.Data == n && doc.FirstChild != nil {
-				{		nodes = append(nodes, doc.FirstChild)
+				{
+					nodes = append(nodes, doc.FirstChild)
 				}
 			}
 		}

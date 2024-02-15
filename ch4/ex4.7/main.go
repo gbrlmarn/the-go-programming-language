@@ -7,43 +7,44 @@ import (
 )
 
 func main() {
-    sb := []byte("hello mister")
-    fmt.Println(string(sb))
-    //reverse(sb)
-    reverse2(sb)
-    fmt.Println(string(sb))
+	sb := []byte("hello mister")
+	fmt.Println(string(sb))
+	//reverse(sb)
+	reverse2(sb)
+	fmt.Println(string(sb))
 }
 
 // with new memory
 func reverse(sb []byte) {
-    buf := make([]byte, 0, len(sb)) 
-    for i := len(sb); i > 0; {
-        _, s := utf8.DecodeLastRune(sb[:i])
-        buf = append(buf, sb[i-s:i]...)
-        i -= s
-    }
-    copy(sb, buf)
+	buf := make([]byte, 0, len(sb))
+	for i := len(sb); i > 0; {
+		_, s := utf8.DecodeLastRune(sb[:i])
+		buf = append(buf, sb[i-s:i]...)
+		i -= s
+	}
+	copy(sb, buf)
 }
 
 // without new memory
 // only works when utf-8 have the same byte length
 // at least is faster :D
 func reverse2(sb []byte) {
-    for i, j := 0, len(sb); i < j; {
-        _, si := utf8.DecodeRune(sb[i:])
-        _, sj := utf8.DecodeLastRune(sb[:j])
-        ci, cj := 0, sj // byte counters
-        if si == sj {
-            for ci != si && cj != 0 {
-                sb[i+ci], sb[j-cj] = sb[j-cj], sb[i+ci]
-                ci += 1
-                cj -= 1
-            }
-        }
-        i += si
-        j -= sj
-    }
+	for i, j := 0, len(sb); i < j; {
+		_, si := utf8.DecodeRune(sb[i:])
+		_, sj := utf8.DecodeLastRune(sb[:j])
+		ci, cj := 0, sj // byte counters
+		if si == sj {
+			for ci != si && cj != 0 {
+				sb[i+ci], sb[j-cj] = sb[j-cj], sb[i+ci]
+				ci += 1
+				cj -= 1
+			}
+		}
+		i += si
+		j -= sj
+	}
 }
+
 // goos: darwin
 // goarch: arm64
 // pkg: gopl/ch4/ex4.7

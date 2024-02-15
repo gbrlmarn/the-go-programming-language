@@ -10,25 +10,25 @@ var shutdown = make(chan struct{})
 
 type cch struct {
 	ch chan int
-	c int
-	t time.Duration
+	c  int
+	t  time.Duration
 }
 
 func main() {
 	var ping, pong cch
 	ping.ch = make(chan int)
 	pong.ch = make(chan int)
-		
+
 	go func() {
-		ping.ch<- 1
+		ping.ch <- 1
 		worker(&pong, &ping)
 	}()
 	go func() { worker(&ping, &pong) }()
-			
+
 	time.Sleep(3 * time.Second)
 	shutdown <- struct{}{}
-			
-	fmt.Printf("%d communications in %d seconds\n", ping.c, ping.t / time.Second)
+
+	fmt.Printf("%d communications in %d seconds\n", ping.c, ping.t/time.Second)
 }
 
 func worker(rcv, snd *cch) {
@@ -39,8 +39,7 @@ func worker(rcv, snd *cch) {
 			rcv.t = time.Since(start)
 		case v := <-rcv.ch:
 			rcv.c++
-			snd.ch<- v
+			snd.ch <- v
 		}
 	}
 }
-

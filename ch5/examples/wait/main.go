@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	if(len(os.Args) < 2) {
+	if len(os.Args) < 2 {
 		log.Fatal("Please enter an url.")
 	}
 	url := os.Args[1]

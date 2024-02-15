@@ -15,7 +15,7 @@ import (
 func main() {
 	id := flag.String("id", "start", "Please provide what id name you are looking...")
 	flag.Parse()
-	
+
 	for _, url := range os.Args[1:] {
 		outline(url, *id)
 	}
@@ -65,7 +65,7 @@ func ElementByID(doc *html.Node, id string) *html.Node {
 		}
 		return false
 	}
-	
+
 	found, res := forEachNode(doc, pre)
 	if found {
 		return res

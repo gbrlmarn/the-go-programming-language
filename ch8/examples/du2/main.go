@@ -32,7 +32,7 @@ func main() {
 	}()
 
 	// Print the results periodically.
-	var tick <- chan time.Time
+	var tick <-chan time.Time
 	if *verbose {
 		tick = time.Tick(500 * time.Millisecond)
 	}
@@ -40,13 +40,13 @@ func main() {
 loop:
 	for {
 		select {
-		case size, ok := <- fileSizes:
+		case size, ok := <-fileSizes:
 			if !ok {
 				break loop // fileSizes was closed
 			}
 			nfiles++
 			nbytes += size
-		case <- tick:
+		case <-tick:
 			printDiskUsage(nfiles, nbytes)
 		}
 	}

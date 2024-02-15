@@ -6,8 +6,8 @@ import "sync"
 
 // A memo caches the results of calling a Func.
 type Memo struct {
-	f Func
-	mu sync.Mutex // guards cache
+	f     Func
+	mu    sync.Mutex // guards cache
 	cache map[string]result
 }
 
@@ -16,7 +16,7 @@ type Func func(key string) (interface{}, error)
 
 type result struct {
 	value interface{}
-	err error
+	err   error
 }
 
 func New(f Func) *Memo {

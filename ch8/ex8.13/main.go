@@ -39,7 +39,7 @@ func broadcaster() {
 func handleConn(conn net.Conn) {
 	ch := make(chan string) // outgoing client messages
 	go clientWriter(conn, ch)
-	
+
 	who := conn.RemoteAddr().String()
 	ch <- "You are " + who
 	messages <- who + " has arrived"
@@ -50,14 +50,14 @@ func handleConn(conn net.Conn) {
 		<-timeout.C
 		conn.Close()
 	}()
-	
+
 	input := bufio.NewScanner(conn)
 	for input.Scan() {
 		timeout.Reset(5 * time.Minute)
 		messages <- who + ": " + input.Text()
 	}
 	// NOTE: ignoring potential errors from input.Err()
-	
+
 	leaving <- ch
 	messages <- who + " has left"
 	conn.Close()

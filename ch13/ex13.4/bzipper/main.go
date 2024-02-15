@@ -9,14 +9,14 @@ import (
 )
 
 func main() {
-    w, err := bzip.NewWriter(os.Stdout)
-    if err != nil {
-        log.Fatalf("bzipper: %v\n", err)
-    }
-    if _, err := io.Copy(w, os.Stdin); err != nil {
-        log.Fatalf("bzipper: %v\n", err)
-    }
-    if err := w.Close(); err != nil {
-        log.Fatalf("bzipper: close: %v\n", err)
-    }
+	w, err := bzip.NewWriter(os.Stdout)
+	if err != nil {
+		log.Fatalf("bzipper: %v\n", err)
+	}
+	if _, err := io.Copy(w, os.Stdin); err != nil {
+		log.Fatalf("bzipper: %v\n", err)
+	}
+	if err := w.Close(); err != nil {
+		log.Fatalf("bzipper: close: %v\n", err)
+	}
 }

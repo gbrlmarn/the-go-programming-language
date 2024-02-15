@@ -17,7 +17,7 @@ func TestSplit(t *testing.T) {
 		{"x,y,z", ",", 3},
 		{"Hello mister", " ", 2},
 		{"variable_name_with_underscore", "_", 4},
-        {"Separe line\nby line", "\n", 2},
+		{"Separe line\nby line", "\n", 2},
 	}
 	for _, test := range tests {
 		got := len(strings.Split(test.s, test.sep))

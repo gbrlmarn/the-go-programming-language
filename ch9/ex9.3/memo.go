@@ -8,22 +8,22 @@ type Func func(key string) (interface{}, error)
 
 type result struct {
 	value interface{}
-	err error
+	err   error
 }
 
 type entry struct {
-	res result
+	res   result
 	ready chan struct{} // closed when res is ready
 }
 
 // A request is a message requesting that the Func be applied to key.
 type request struct {
-	key string
+	key      string
 	response chan<- result // the client wants a single result
-	done <-chan bool
+	done     <-chan bool
 }
 
-type Memo struct { requests chan request }
+type Memo struct{ requests chan request }
 
 func New(f Func) *Memo {
 	memo := &Memo{requests: make(chan request)}

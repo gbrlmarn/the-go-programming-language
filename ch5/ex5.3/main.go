@@ -22,13 +22,13 @@ func contents(n *html.Node) {
 		(n.Data == "script" || n.Data == "style") {
 		return
 	}
-    if n.Type == html.TextNode {
-        fmt.Println(n.Data)
-    }
-    if n.FirstChild != nil {
-        contents(n.FirstChild)
-    }
-    if n.NextSibling != nil {
-        contents(n.NextSibling)
-    }
+	if n.Type == html.TextNode {
+		fmt.Println(n.Data)
+	}
+	if n.FirstChild != nil {
+		contents(n.FirstChild)
+	}
+	if n.NextSibling != nil {
+		contents(n.NextSibling)
+	}
 }

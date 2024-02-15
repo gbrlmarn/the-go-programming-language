@@ -162,27 +162,27 @@ func (d *Decoder) Token() (Token, error) {
 	if d.err != nil {
 		return nil, d.err
 	}
-    text := d.lex.text()
+	text := d.lex.text()
 	switch d.lex.token {
-    case scanner.Ident:
-        return Symbol(text), nil 
+	case scanner.Ident:
+		return Symbol(text), nil
 	case scanner.Int:
-        n, err := strconv.ParseInt(text, 10, 64)
-        if err != nil {
-            return nil, err
-        }
-        return Int(n), nil
+		n, err := strconv.ParseInt(text, 10, 64)
+		if err != nil {
+			return nil, err
+		}
+		return Int(n), nil
 	case scanner.String:
-        return text[1:len(text)-1], nil
-    case '(':
-        d.depth++
-        return StartList{}, nil
-    case ')':
-        d.depth--
-        return EndList{}, nil
-    case scanner.EOF:
-        return nil, io.EOF
-    default:
-        return nil, fmt.Errorf("Unexpected token %q", text)
+		return text[1 : len(text)-1], nil
+	case '(':
+		d.depth++
+		return StartList{}, nil
+	case ')':
+		d.depth--
+		return EndList{}, nil
+	case scanner.EOF:
+		return nil, io.EOF
+	default:
+		return nil, fmt.Errorf("Unexpected token %q", text)
 	}
 }

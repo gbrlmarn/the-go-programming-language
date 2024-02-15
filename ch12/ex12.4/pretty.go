@@ -175,20 +175,20 @@ func pretty(p *printer, v reflect.Value) error {
 
 	case reflect.Ptr:
 		return pretty(p, v.Elem())
-    case reflect.Bool:
-        if v.Bool() {
-            p.string("t")
-        } else {
-            p.string("nil")
-        }
-    case reflect.Float32, reflect.Float64:
-        p.stringf("%g", v.Float())
-    case reflect.Complex64, reflect.Complex128:
-        p.stringf("#C(%g %g)", real(v.Complex()), imag(v.Complex()))
-    case reflect.Interface:
-        var b bytes.Buffer
-        encode(&b, v.Elem())
-        p.stringf("(%q %s)", v.Elem().Type(), b.String())
+	case reflect.Bool:
+		if v.Bool() {
+			p.string("t")
+		} else {
+			p.string("nil")
+		}
+	case reflect.Float32, reflect.Float64:
+		p.stringf("%g", v.Float())
+	case reflect.Complex64, reflect.Complex128:
+		p.stringf("#C(%g %g)", real(v.Complex()), imag(v.Complex()))
+	case reflect.Interface:
+		var b bytes.Buffer
+		encode(&b, v.Elem())
+		p.stringf("(%q %s)", v.Elem().Type(), b.String())
 
 	default: // float, complex, bool, chan, func, interface
 		return fmt.Errorf("unsupported type: %s", v.Type())

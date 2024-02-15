@@ -83,12 +83,12 @@ func (c call) Eval(env Env) float64 {
 	panic(fmt.Sprintf("unsupported function call: %s", c.fn))
 }
 
-func(v Var) Check(vars map[Var]bool) error {
+func (v Var) Check(vars map[Var]bool) error {
 	vars[v] = true
 	return nil
 }
 
-func(literal) Check(vars map[Var]bool) error {
+func (literal) Check(vars map[Var]bool) error {
 	return nil
 }
 
@@ -103,7 +103,7 @@ func (b binary) Check(vars map[Var]bool) error {
 	if !strings.ContainsRune("+-*/", b.op) {
 		return fmt.Errorf("unexpected unary op %q", b.op)
 	}
-	if err :=  b.x.Check(vars); err != nil {
+	if err := b.x.Check(vars); err != nil {
 		return err
 	}
 	return b.y.Check(vars)
@@ -125,4 +125,4 @@ func (c call) Check(vars map[Var]bool) error {
 	return nil
 }
 
-var numParams = map[string]int{"pow": 2, "sin": 1, "sqrt": 1} 
+var numParams = map[string]int{"pow": 2, "sin": 1, "sqrt": 1}

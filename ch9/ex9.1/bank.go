@@ -3,15 +3,15 @@ package bank
 
 type transaction struct {
 	amount chan int
-	ok chan bool
+	ok     chan bool
 }
 
 var deposits = make(chan int) // send amount to deposit
 var balances = make(chan int) // receive balances
-var withdraw transaction // send amount to withdraw
+var withdraw transaction      // send amount to withdraw
 
 func Deposit(amount int) { deposits <- amount }
-func Balance() int { return <-balances }
+func Balance() int       { return <-balances }
 func Withdraw(amount int) bool {
 	withdraw.amount <- amount
 	return <-withdraw.ok

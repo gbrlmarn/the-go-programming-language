@@ -8,15 +8,15 @@ import (
 )
 
 func main() {
-    wfreq := make(map[string]int) // words freq
-    input := bufio.NewScanner(os.Stdin)
-    input.Split(bufio.ScanWords) 
-    for input.Scan() {
-        word := input.Text() 
-        wfreq[word]++
-    }
-    fmt.Print("word\tfreq\n")
-    for w, f := range wfreq {
-        fmt.Printf("%s\t%d\n", w, f)
-    }
+	wfreq := make(map[string]int) // words freq
+	input := bufio.NewScanner(os.Stdin)
+	input.Split(bufio.ScanWords)
+	for input.Scan() {
+		word := input.Text()
+		wfreq[word]++
+	}
+	fmt.Print("word\tfreq\n")
+	for w, f := range wfreq {
+		fmt.Printf("%s\t%d\n", w, f)
+	}
 }

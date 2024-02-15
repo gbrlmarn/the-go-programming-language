@@ -31,4 +31,3 @@ func (c *LineCounter) Write(p []byte) (int, error) {
 	*c += LineCounter(count)
 	return count, nil
 }
-

@@ -9,8 +9,8 @@ import (
 
 type Celsius float64
 type Fahrenheit float64
-type Kelvin     float64
-type celsiusFlag struct { Celsius }
+type Kelvin float64
+type celsiusFlag struct{ Celsius }
 
 // FToC converts a Fahrenheit temperature to Celsius
 func FToC(f Fahrenheit) Celsius { return Celsius((f - 32) * 5 / 9) }
@@ -31,7 +31,7 @@ func (f *celsiusFlag) Set(s string) error {
 	case "F", "℉":
 		f.Celsius = FToC(Fahrenheit(value))
 		return nil
-	case "K" :
+	case "K":
 		f.Celsius = KToC(Kelvin(value))
 		return nil
 	}

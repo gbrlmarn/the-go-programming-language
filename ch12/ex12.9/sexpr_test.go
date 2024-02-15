@@ -35,25 +35,25 @@ func Test(t *testing.T) {
 		},
 	}
 
-    // Encoding 
-    data, err := Marshal(strangelove)
-    if err != nil {
-        t.Fatalf("Marshal failed: %v", err)
-    }
-    t.Logf("Marshal() = %s\n", data)
+	// Encoding
+	data, err := Marshal(strangelove)
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+	t.Logf("Marshal() = %s\n", data)
 
-    // Decoding
-    var movie Movie
-    err = Unmarshal(data, &movie)
-    if err != nil {
-        t.Fatalf("Unmarshal failed: %v", err)
-    }
-    t.Logf("Unmarshal() = %+v\n", movie)
+	// Decoding
+	var movie Movie
+	err = Unmarshal(data, &movie)
+	if err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+	t.Logf("Unmarshal() = %+v\n", movie)
 
-    // Check equality
-    if !reflect.DeepEqual(strangelove, movie) {
-        t.Fatal("Not equal")
-    }
+	// Check equality
+	if !reflect.DeepEqual(strangelove, movie) {
+		t.Fatal("Not equal")
+	}
 
 	// Decode it
 	dec := NewDecoder(strings.NewReader(string(data)))

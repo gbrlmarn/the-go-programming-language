@@ -11,17 +11,17 @@ import (
 )
 
 func main() {
-    s512 := flag.Bool("s512", false, "use sha512 alg")
-    flag.Parse()
-    r := bufio.NewReader(os.Stdin)
-    in, err := r.ReadString('\n')
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "ReadString: %v\n", err)
-    }
-    if *s512 {
-        fmt.Printf("%x\n", sha512.Sum512([]byte(in)))
-    } else {
-        fmt.Printf("%x\n", sha256.Sum256([]byte(in)))
-        fmt.Printf("Use -s512 flag for better encryption\n")
-    }
+	s512 := flag.Bool("s512", false, "use sha512 alg")
+	flag.Parse()
+	r := bufio.NewReader(os.Stdin)
+	in, err := r.ReadString('\n')
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "ReadString: %v\n", err)
+	}
+	if *s512 {
+		fmt.Printf("%x\n", sha512.Sum512([]byte(in)))
+	} else {
+		fmt.Printf("%x\n", sha256.Sum256([]byte(in)))
+		fmt.Printf("Use -s512 flag for better encryption\n")
+	}
 }

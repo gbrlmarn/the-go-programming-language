@@ -20,12 +20,12 @@ func Register(n string, f func(fileName string) error) {
 }
 
 func Open(fileName string) error {
-    formatName := filepath.Ext(fileName)
-    formatName = formatName[1:]
+	formatName := filepath.Ext(fileName)
+	formatName = formatName[1:]
 	for _, format := range formats {
-        if formatName == format.name {
+		if formatName == format.name {
 			return format.reader(fileName)
 		}
 	}
-    return fmt.Errorf("archive format not found: %v\n", formatName)
+	return fmt.Errorf("archive format not found: %v\n", formatName)
 }

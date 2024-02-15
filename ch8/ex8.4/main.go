@@ -26,7 +26,6 @@ func main() {
 	}
 }
 
-
 func echo(c net.Conn, shout string, delay time.Duration) {
 	fmt.Fprintln(c, "\t", strings.ToUpper(shout))
 	time.Sleep(delay)
@@ -46,7 +45,7 @@ func handleConn(c net.Conn) {
 			echo(c, input.Text(), 1*time.Second)
 		}()
 	}
-	
+
 	// closer
 	// NOTE: ignoring potential errors from input.Err()
 	go func() {
@@ -58,4 +57,3 @@ func handleConn(c net.Conn) {
 		}
 	}()
 }
-

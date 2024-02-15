@@ -14,15 +14,15 @@ import (
 )
 
 func main() {
-    const (
-        xmin, ymin, xmax, ymax = -2, -2, +2, +2
-        width, height          = 1024, 1024
+	const (
+		xmin, ymin, xmax, ymax = -2, -2, +2, +2
+		width, height          = 1024, 1024
 	)
 
 	start := time.Now()
 	workers := runtime.GOMAXPROCS(-1)
 	var wg sync.WaitGroup // number of working goroutines
-    img := image.NewRGBA(image.Rect(0, 0, width, height))
+	img := image.NewRGBA(image.Rect(0, 0, width, height))
 	for w := 0; w < workers; w++ {
 		wg.Add(1)
 		// worker
@@ -39,7 +39,7 @@ func main() {
 			}
 		}()
 	}
-	
+
 	// closer
 	go func() {
 		wg.Wait()
@@ -51,17 +51,17 @@ func main() {
 }
 
 func mandlebrot(z complex128) color.Color {
-    const iterations = 200
-    const contrast = 15
+	const iterations = 200
+	const contrast = 15
 
-    var v complex128
-    for n := uint8(0); n < iterations; n++ {
-        v = v*v + z
-        if cmplx.Abs(v) > 2 {
-            return color.Gray{255 - contrast*n}
-       }
-    }
-    return color.Black
+	var v complex128
+	for n := uint8(0); n < iterations; n++ {
+		v = v*v + z
+		if cmplx.Abs(v) > 2 {
+			return color.Gray{255 - contrast*n}
+		}
+	}
+	return color.Black
 }
 
 // encoded in: 229.337958ms -> sequential version

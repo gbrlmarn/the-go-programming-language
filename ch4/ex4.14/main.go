@@ -11,7 +11,7 @@ import (
 )
 
 type UserSearchResult struct {
-	Users      []User
+	Users []User
 }
 
 type User struct {

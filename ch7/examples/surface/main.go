@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
+	"gopl/ch7/examples/eval"
 	"io"
 	"log"
 	"math"
 	"net/http"
-	"gopl/ch7/examples/eval"
 )
 
 const (

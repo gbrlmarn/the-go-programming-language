@@ -96,33 +96,31 @@ func Example_equal() {
 	fmt.Println(Equal([]string(nil), []string{}))             // "true"
 	fmt.Println(Equal(map[string]int(nil), map[string]int{})) // "true"
 
-    // Output:
-    // true
-    // false
-    // true
-    // true 
+	// Output:
+	// true
+	// false
+	// true
+	// true
 }
 
 func Example_equalCycle() {
-    // Circular linked lists a -> b -> a and c -> c.
-    type link struct {
-        value string
-        tail *link
-    }
-    a, b, c := &link{value: "a"}, &link{value: "b"}, &link{value: "c"}
-    a.tail, b.tail, c.tail = b, a, c
-    fmt.Println(Equal(a, a)) // "true"
-    fmt.Println(Equal(b, b)) // "true"
-    fmt.Println(Equal(c, c)) // "true"
-    fmt.Println(Equal(a, b)) // "false"
-    fmt.Println(Equal(a, c)) // "false"
+	// Circular linked lists a -> b -> a and c -> c.
+	type link struct {
+		value string
+		tail  *link
+	}
+	a, b, c := &link{value: "a"}, &link{value: "b"}, &link{value: "c"}
+	a.tail, b.tail, c.tail = b, a, c
+	fmt.Println(Equal(a, a)) // "true"
+	fmt.Println(Equal(b, b)) // "true"
+	fmt.Println(Equal(c, c)) // "true"
+	fmt.Println(Equal(a, b)) // "false"
+	fmt.Println(Equal(a, c)) // "false"
 
-    // Output:
-    // true
-    // true
-    // true
-    // false
-    // false
+	// Output:
+	// true
+	// true
+	// true
+	// false
+	// false
 }
-
-

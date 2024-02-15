@@ -36,19 +36,19 @@ func Test(t *testing.T) {
 		},
 	}
 
-    // Encoding 
-    data, err := Marshal(strangelove)
-    if err != nil {
-        t.Fatalf("Marshal failed: %v", err)
-    }
-    t.Logf("Marshal() = %s\n", data)
+	// Encoding
+	data, err := Marshal(strangelove)
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+	t.Logf("Marshal() = %s\n", data)
 
-    // Encoder
-    buf := new(bytes.Buffer)
-    e := NewEncoder(buf)
-    err = e.Encode(strangelove)
-    if err != nil {
-        t.Fatalf("e.Encode failed: %v", err)
-    }
-    t.Logf("e.Encode() = %s\n", buf)
+	// Encoder
+	buf := new(bytes.Buffer)
+	e := NewEncoder(buf)
+	err = e.Encode(strangelove)
+	if err != nil {
+		t.Fatalf("e.Encode failed: %v", err)
+	}
+	t.Logf("e.Encode() = %s\n", buf)
 }

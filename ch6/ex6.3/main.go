@@ -63,7 +63,7 @@ func (s *IntSet) String() string {
 func (s *IntSet) Len() int {
 	len := 0
 	for _, word := range s.words {
-		for j := 0; j < 64; j++ { 
+		for j := 0; j < 64; j++ {
 			if word&(1<<uint(j)) != 0 {
 				len += 1
 			}
@@ -74,8 +74,8 @@ func (s *IntSet) Len() int {
 
 // Remove x from the set
 func (s *IntSet) Remove(x int) {
-	word := x/64
-	if(s.Has(x)) {
+	word := x / 64
+	if s.Has(x) {
 		s.words = append(s.words[:word], s.words[word+1:]...)
 	}
 }
@@ -101,7 +101,6 @@ func (s *IntSet) AddAll(x ...int) {
 		s.Add(v)
 	}
 }
-
 
 // IntersectWith sets s to the intersection of s and t.
 func (s *IntSet) IntersectWith(t *IntSet) {

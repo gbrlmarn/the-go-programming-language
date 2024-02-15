@@ -4,9 +4,9 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"gopl/ch7/examples/eval"
 	"log"
 	"os"
-	"gopl/ch7/examples/eval"
 )
 
 func main() {
